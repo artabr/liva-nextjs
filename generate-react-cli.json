@@ -11,7 +11,11 @@
       "withTest": false,
       "withStory": false,
       "withLazy": false,
-      "withIndex": true
+      "withIndex": true,
+      "customTemplates": {
+        "index": "templates/index.ts",
+        "component": "templates/TemplateName.tsx"
+      }
     }
   }
 }
