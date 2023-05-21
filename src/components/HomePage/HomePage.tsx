@@ -1,116 +1,127 @@
-{{ define "main" }}
-
-<!-- featured post -->
-<section class="section-sm">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-10 featured-post-slider">
-        <!-- slider item -->
-        {{ range ( where .Site.RegularPages "Type" "featured" )}}
-        <article class="card featured-post">
-          <div class="row no-gutters align-items-center">
-            <div class="col-md-5">
-              {{ if .Params.Image }}
-              <img src="{{ .Params.Image | absURL }}" class="card-img" alt="{{ .Title | markdownify }}">
-              {{ end }}
-            </div>
-            <div class="col-md-6 offset-md-1">
-              <div class="card-body">
-                <div class="mb-3 post-meta">
-                  <span>By {{ .Site.Params.Author }}</span>
-                  {{ if not .Params.HideDate }}
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>{{ .PublishDate.Format "02 January 2006" }}</span>
-                  {{ end }}
+// featured post
+export const FeaturedPosts = (featuredPosts) => {
+  return (
+    <section className="section-sm">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-10 featured-post-slider">
+            {featuredPosts.map((post) => (
+              <article key={post.id} className="card featured-post">
+                <div className="row no-gutters align-items-center">
+                  <div className="col-md-5">
+                    {post.image && <img src={post.image.src} className="card-img" alt={post.image.title} />}
+                  </div>
+                  <div className="col-md-6 offset-md-1">
+                    <div className="card-body">
+                      <div className="mb-3 post-meta">
+                        <span>By {post.author}</span>
+                        {!post.hideDate && (
+                          <>
+                            <span className="border-bottom border-primary px-2 mx-1" />
+                            <span>{post.publishedDate}</span>
+                          </>
+                        )}
+                      </div>
+                      <a href={post.url} className="h1 font-weight-bold d-block text-dark mb-4 card-title">
+                        {post.title}
+                      </a>
+                      <p className="card-text">{post.summary}...</p>
+                    </div>
+                  </div>
                 </div>
-                <a href="{{ .Permalink }}"
-                  class="h1 font-weight-bold d-block text-dark mb-4 card-title">{{ .Title | markdownify }}</a>
-                <p class="card-text">{{.Summary}}...</p>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
-        </article>
-        {{ end }}
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /featured post -->
-
-<!-- recent post -->
-<section>
-  <div class="container">
-    <div class="row">
-      {{ range first 3 (where .Site.RegularPages "Type" "post")}}
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          {{ if .Params.Image }}
-          <div class="recent-post-thumb mr-3" style="background-image: url('{{ .Params.Image | absURL }}');"></div>
-          {{ end }}
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By {{ .Site.Params.Author }}</span>
-              {{ if not .Params.HideDate }}
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>{{ .PublishDate.Format "02 Jan 2006" }}</span>
-              {{ end }}
-            </div>
-            <a href="{{ .Permalink }}" class="h5 d-block mb-3">{{ .Title | markdownify }}</a>
-            <a href="{{ .Permalink }}" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-<!-- /recent post -->
-
-<!-- blog post -->
-<section class="section pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
-          {{ range $paginator.Pages }}
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              {{ if .Params.Image }}
-              <img src="{{ .Params.Image | absURL }}" class="card-img-top" alt="{{ .Title | markdownify }}">
-              {{ end }}
-              <div class="card-body px-0">
-                {{ range .Params.Categories }}
-                <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}"
-                  class="text-primary">{{ . | title | humanize }}</a>
-                {{ end }}
-                <a href="{{ .Permalink }}" class="h5 d-block my-3">{{ .Title | markdownify }}</a>
-                <div class="mb-3 post-meta">
-                  <span>By {{ .Site.Params.Author }}</span>
-                  {{ if not .Params.HideDate }}
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>{{ .PublishDate.Format "02 January 2006" }}</span>
-                  {{ end }}
-                </div>
-                <p class="card-text">{{ .Summary }}</p>
-                <a href="{{ .Permalink }}" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          {{ end }}
         </div>
       </div>
-      <!-- sidebar -->
-      {{ partial "sidebar.html" . }}
-      <!-- /sidebar -->
+    </section>
+  );
+};
 
-      <!-- pagination -->
-      <div class="col-12 mt-5">
-        {{ template "_internal/pagination.html" . }}
+// recent post
+export const RecentPosts = (recentPosts) => {
+  return (
+    <section>
+      <div className="container">
+        <div className="row">
+          {recentPosts.map((post) => (
+            <div key={post.id} className="col-lg-4 small-post-border">
+              <article className="media">
+                {post.image && (
+                  <div className="recent-post-thumb mr-3" style={{ backgroundImage: `url(${post.image.src});` }} />
+                )}
+                <div className="media-body">
+                  <div className="mb-3 post-meta">
+                    <span>By {post.author}</span>
+                    {!post.hideDate && (
+                      <>
+                        <span className="border-bottom border-primary px-2 mx-1" />
+                        <span>{post.publishedDate}</span>
+                      </>
+                    )}
+                  </div>
+                  <a href={post.url} className="h5 d-block mb-3">
+                    {post.title}
+                  </a>
+                  <a href={post.url} className="btn btn-outline-primary">
+                    read more
+                  </a>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- /blog post -->
+    </section>
+  );
+};
 
-{{ end }}
+// blog post
+export const BlogPosts = (blogPosts) => {
+  return (
+    <section className="section pb-0">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8 mb-5 mb-lg-0">
+            <div className="row">
+              {blogPosts.map((post) => (
+                <div key={post.id} className="col-md-6 mb-4">
+                  <article className="card">
+                    {post.image && <img src={post.image.src} className="card-img-top" alt={post.image.title} />}
+                    <div className="card-body px-0">
+                      {post.categories &&
+                        post.categories.map((category) => (
+                          <a key={category.id} href={category.url} className="text-primary">
+                            {category.title}
+                          </a>
+                        ))}
+                      <a href={post.url} className="h5 d-block my-3">
+                        {post.title}
+                      </a>
+                      <div className="mb-3 post-meta">
+                        <span>By {post.author}</span>
+                        {!post.hideDate && (
+                          <>
+                            <span className="border-bottom border-primary px-2 mx-1" />
+                            <span>{post.publishedDate}</span>
+                          </>
+                        )}
+                      </div>
+                      <p className="card-text">{post.summary}</p>
+                      <a href={post.url} className="btn btn-outline-primary">
+                        read more
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>Sidebar</div>
+
+          <div className="col-12 mt-5">Pagination</div>
+        </div>
+      </div>
+    </section>
+  );
+};
