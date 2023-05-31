@@ -19,15 +19,7 @@ export const Navigation = () => {
     },
     { id: 2, name: 'About', hasChildren: false, url: '/about' },
     { id: 3, name: 'Contact', hasChildren: false, url: '/contact' },
-    {
-      id: 4,
-      name: 'Menu 3',
-      hasChildren: true,
-      children: [
-        { id: 3, name: 'Child 3', url: 'https://example.com/child3' },
-        { id: 4, name: 'Child 4', url: 'https://example.com/child4' }
-      ]
-    }
+    { id: 4, name: 'Blog', hasChildren: false, url: '/blog' }
   ];
 
   return (
