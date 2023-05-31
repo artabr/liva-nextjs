@@ -1,6 +1,7 @@
 import { Paginator } from '@/components/Paginator';
 import { Pagination } from '@/components/Pagination';
-import { data } from './mockData';
+import { Sidebar } from '@/components/Sidebar';
+import { pages } from './mockData';
 
 export const BlogPosts = () => {
   return (
@@ -9,7 +10,7 @@ export const BlogPosts = () => {
         <div className="row">
           <div className="col-lg-8 mb-5 mb-lg-0">
             <div className="row">
-              <Paginator pages={data.paginator.pages} />
+              <Paginator pages={pages} />
             </div>
           </div>
           <Sidebar />

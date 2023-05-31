@@ -1,4 +1,5 @@
 import { RecentPost } from '@/components/RecentPost';
+import { BlogPosts } from '@/components/BlogPosts';
 
 const recentPosts = [
   {
@@ -37,6 +38,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <BlogPosts />
     </div>
   );
 }

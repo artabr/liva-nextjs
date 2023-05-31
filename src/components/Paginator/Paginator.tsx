@@ -8,7 +8,6 @@ export type Page = {
       id: string;
       title: string;
     }[];
-    title: string;
     author: string;
     hideDate?: boolean;
     summary: string;
@@ -37,7 +36,7 @@ export const Paginator = ({ pages }: PaginatorProps) => {
                 </a>
               ))}
               <a href={page.params.permalink} className="h5 d-block my-3">
-                {page.params.title}
+                {page.title}
               </a>
               <div className="mb-3 post-meta">
                 <span>By {page.params.author}</span>
