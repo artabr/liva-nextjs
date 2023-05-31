@@ -38,6 +38,7 @@ module.exports = {
     'react/require-default-props': 'off',
     '@typescript-eslint/no-var-requires': 'warn',
     'jsx-a11y/anchor-is-valid': 'warn',
-    'react/no-array-index-key': 'warn'
+    'react/no-array-index-key': 'warn',
+    'react/no-unused-prop-types': 'warn'
   }
 };
