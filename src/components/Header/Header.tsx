@@ -1,70 +1,130 @@
-{{ "<!-- navigation -->" | safeHTML }}
-<header class="navigation">
-  <div class="container">
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
-      <a class="navbar-brand mobile-view" href="{{ .Site.BaseURL }}"><img class="img-fluid"
-          src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu"></i>
-      </button>
+import Link from 'next/link';
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <div class="desktop-view">
-          <ul class="navbar-nav mr-auto">
-            {{ range .Site.Params.social }}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a>
-            </li>
-            {{ end }}
-          </ul>
-        </div>
+export const Navigation = () => {
+  const socialLinks = [
+    { id: 1, link: 'https://example.com/social1', icon: 'social-icon-1' },
+    { id: 2, link: 'https://example.com/social2', icon: 'social-icon-2' },
+    { id: 3, link: 'https://example.com/social3', icon: 'social-icon-3' }
+  ];
 
-        <a class="navbar-brand mx-auto desktop-view" href="{{ .Site.BaseURL }}"><img class="img-fluid"
-            src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"></a>
+  const mainMenus = [
+    {
+      id: 1,
+      name: 'Menu 1',
+      hasChildren: true,
+      children: [
+        { id: 1, name: 'Child 1', url: 'https://example.com/child1' },
+        { id: 2, name: 'Child 2', url: 'https://example.com/child2' }
+      ]
+    },
+    { id: 2, name: 'About', hasChildren: false, url: '/about' },
+    {
+      id: 3,
+      name: 'Menu 3',
+      hasChildren: true,
+      children: [
+        { id: 3, name: 'Child 3', url: 'https://example.com/child3' },
+        { id: 4, name: 'Child 4', url: 'https://example.com/child4' }
+      ]
+    }
+  ];
 
-        <ul class="navbar-nav">
-          {{ range .Site.Menus.main }}
-          {{ if .HasChildren }}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              {{ .Name }}
+  return (
+    <>
+      {/* navigation */}
+      <header className="navigation">
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+            <a className="navbar-brand mobile-view" href={process.env.PUBLIC_URL}>
+              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/path/to/logo`} alt="Site Title" />
             </a>
-            <div class="dropdown-menu">
-              {{ range .Children }}
-              <a class="dropdown-item" href="{{ .URL | absURL }}">{{ .Name }}</a>
-              {{ end }}
+            <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+              <i className="ti-menu" />
+            </button>
+
+            <div className="collapse navbar-collapse text-center" id="navigation">
+              <div className="desktop-view">
+                <ul className="navbar-nav mr-auto">
+                  {socialLinks.map((social) => (
+                    <li className="nav-item" key={social.id}>
+                      <a className="nav-link" href={social.link}>
+                        <i className={social.icon} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a className="navbar-brand mx-auto desktop-view" href={process.env.PUBLIC_URL}>
+                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/path/to/logo`} alt="Site Title" />
+              </a>
+
+              <ul className="navbar-nav">
+                {mainMenus.map((menu) => {
+                  return menu.hasChildren ? (
+                    <li key={menu.id} className="nav-item dropdown">
+                      <a
+                        className="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        {menu.name}
+                      </a>
+                      <div className="dropdown-menu">
+                        {menu.children?.map((child) => (
+                          <a className="dropdown-item" href={child.url} key={child.id}>
+                            {child.name}
+                          </a>
+                        ))}
+                      </div>
+                    </li>
+                  ) : (
+                    <li key={menu.id} className="nav-item">
+                      <Link className="nav-link" href={menu.url || '/'}>
+                        {menu.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              {process.env.SEARCH_ENABLE && (
+                /* search */
+                <div className="search pl-lg-4">
+                  <button id="searchOpen" className="search-btn" type="button">
+                    <i className="ti-search" />
+                  </button>
+                  <div className="search-wrapper">
+                    <form action={`${process.env.PUBLIC_URL}/search`} className="h-100">
+                      <input
+                        className="search-box px-4"
+                        id="search-query"
+                        name="s"
+                        type="search"
+                        placeholder="Type & Hit Enter..."
+                      />
+                    </form>
+                    <button id="searchClose" className="search-close" type="button">
+                      <i className="ti-close text-dark" />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {process.env.NAV_BUTTON_ENABLE && (
+                /* get start btn */
+                <a href={process.env.NAV_BUTTON_LINK} className="btn btn-primary ml-lg-4" type="button">
+                  {process.env.NAV_BUTTON_LABEL}
+                </a>
+              )}
             </div>
-          </li>
-          {{ else }}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
-          </li>
-          {{ end }}
-          {{ end }}
-        </ul>
-
-        {{ if .Site.Params.search.enable }}
-        {{ "<!-- search -->" | safeHTML }}
-        <div class="search pl-lg-4">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="{{ .Site.BaseURL }}/search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
-          </div>
+          </nav>
         </div>
-        {{ end }}
-
-        {{ if .Site.Params.navButton.enable }}
-        {{ "<!-- get start btn -->" | safeHTML }}
-        <a href="{{ .Site.Params.navButton.link | absURL }}"
-          class="btn btn-primary ml-lg-4">{{ .Site.Params.navButton.label }}</a>
-        {{ end }}
-      </div>
-    </nav>
-  </div>
-</header>
-{{ "<!-- /navigation -->" | safeHTML }}
+      </header>
+      {/* /navigation */}
+    </>
+  );
+};

@@ -35,6 +35,9 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/destructuring-assignment': 'off',
     'react/function-component-definition': 'off',
-    '@typescript-eslint/no-var-requires': 'warn'
+    'react/require-default-props': 'off',
+    '@typescript-eslint/no-var-requires': 'warn',
+    'jsx-a11y/anchor-is-valid': 'warn',
+    'react/no-array-index-key': 'warn'
   }
 };
