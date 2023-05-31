@@ -18,8 +18,9 @@ export const Navigation = () => {
       ]
     },
     { id: 2, name: 'About', hasChildren: false, url: '/about' },
+    { id: 3, name: 'Contact', hasChildren: false, url: '/contact' },
     {
-      id: 3,
+      id: 4,
       name: 'Menu 3',
       hasChildren: true,
       children: [
