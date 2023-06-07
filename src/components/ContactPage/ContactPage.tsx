@@ -1,4 +1,5 @@
 import { ContactForm } from '@/components/ContactForm';
+import { TfiEmail, TfiLocationPin, TfiMobile } from 'react-icons/tfi';
 
 export type GetInTouchProps = {
   title: string;
@@ -18,17 +19,17 @@ export const GetInTouch = ({ title, content, mobile, email, location }: GetInTou
             <div className="content mb-4">{content}</div>
             <div className="row">
               <div className="col-lg-4 small-post-border">
-                <i className="ti-mobile h1 text-primary" />
+                <TfiMobile className="h1 text-primary" />
                 <h5 className="font-weight-light my-3">Phone</h5>
                 {mobile}
               </div>
               <div className="col-lg-4 small-post-border">
-                <i className="ti-email h1 text-primary" />
+                <TfiEmail className="h1 text-primary" />
                 <h5 className="font-weight-light my-3">Email</h5>
                 {email}
               </div>
               <div className="col-lg-4 small-post-border">
-                <i className="ti-location-pin h1 text-primary" />
+                <TfiLocationPin className="h1 text-primary" />
                 <h5 className="font-weight-light my-3">Location</h5>
                 {location}
               </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
 
 export const Navigation = () => {
   const socialLinks = [
@@ -32,7 +33,7 @@ export const Navigation = () => {
               <img className="img-fluid" src={`${process.env.PUBLIC_URL}/path/to/logo`} alt="Site Title" />
             </a>
             <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-              <i className="ti-menu" />
+              <TfiMenu />
             </button>
 
             <div className="collapse navbar-collapse text-center" id="navigation">
@@ -88,7 +89,7 @@ export const Navigation = () => {
                 /* search */
                 <div className="search pl-lg-4">
                   <button id="searchOpen" className="search-btn" type="button">
-                    <i className="ti-search" />
+                    <TfiSearch />
                   </button>
                   <div className="search-wrapper">
                     <form action={`${process.env.PUBLIC_URL}/search`} className="h-100">
@@ -101,7 +102,7 @@ export const Navigation = () => {
                       />
                     </form>
                     <button id="searchClose" className="search-close" type="button">
-                      <i className="ti-close text-dark" />
+                      <TfiClose className="text-dark" />
                     </button>
                   </div>
                 </div>

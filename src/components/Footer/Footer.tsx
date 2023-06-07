@@ -1,3 +1,4 @@
+import { TfiEmail, TfiLocationPin, TfiMobile } from 'react-icons/tfi';
 import { siteParams, taxonomies, footerMenus } from './mockData';
 
 export const Footer = () => {
@@ -17,21 +18,21 @@ export const Footer = () => {
                 {siteParams.mobile && (
                   <li className="mb-3">
                     <a className="text-dark" href={`tel:${siteParams.mobile}`}>
-                      <i className="ti-mobile mr-3 text-primary" />
+                      <TfiMobile className="mr-3 text-primary" />
                       {siteParams.mobile}
                     </a>
                   </li>
                 )}
                 {siteParams.location && (
                   <li className="mb-3">
-                    <i className="ti-location-pin mr-3 text-primary" />
+                    <TfiLocationPin className="mr-3 text-primary" />
                     {siteParams.location}
                   </li>
                 )}
                 {siteParams.email && (
                   <li className="mb-3">
                     <a className="text-dark" href={`mailto:${siteParams.email}`}>
-                      <i className="ti-email mr-3 text-primary" />
+                      <TfiEmail className="mr-3 text-primary" />
                       {siteParams.email}
                     </a>
                   </li>
