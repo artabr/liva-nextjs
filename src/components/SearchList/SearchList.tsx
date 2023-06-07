@@ -1,21 +1,33 @@
-{{ define "main" }}
+export const SearchList = () => {
+  const mockData = [
+    {
+      id: 'mock-key',
+      link: 'https://mock-link.com',
+      title: 'Mock Title',
+      snippet: 'Mock snippet',
+      tags: 'Mock Tags',
+      categories: 'Mock Categories'
+    }
+  ];
 
-<section class="section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div id="search-results"></div>
-        <script id="search-result-template" type="text/x-js-template">
-          <div class="py-4 border-bottom" id="summary-${key}">
-            <h4><a href="${link}">${title}</a></h4>
-            <p>${snippet}</p>
-            ${ isset tags }<p>Tags: ${tags}</p>${ end }
-            ${ isset categories }<p>Categories: ${categories}</p>${ end }
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-10">
+            {mockData.map((item) => (
+              <div className="py-4 border-bottom" key={`summary-${item.id}`}>
+                <h4>
+                  <a href={item.link}>{item.title}</a>
+                </h4>
+                <p>{item.snippet}</p>
+                {item.tags && <p>Tags: {item.tags}</p>}
+                {item.categories && <p>Categories: {item.categories}</p>}
+              </div>
+            ))}
           </div>
-        </script>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-{{ end }}
+    </section>
+  );
+};
