@@ -1,22 +1,13 @@
-export type Page = {
-  title: string;
-  publishDate: Date;
-  params: {
-    permalink: string;
-    image?: string;
-    categories: {
-      id: string;
-      title: string;
-    }[];
-    author: string;
-    hideDate?: boolean;
-    summary: string;
-  };
-};
+import Image from 'next/image';
+import { PostMetadata } from '@/models';
 
 export type PaginatorProps = {
-  pages: Page[];
+  pages: PostMetadata[];
 };
+
+const ensureLeadingSlash = (path: string) => (path.startsWith('/') ? path : `/${path}`);
+
+const hideDate = false;
 
 export const Paginator = ({ pages }: PaginatorProps) => {
   return (
@@ -24,27 +15,31 @@ export const Paginator = ({ pages }: PaginatorProps) => {
       {pages.map((page, index) => (
         <div key={`post-${index}`} className="col-md-6 mb-4">
           <article className="card">
-            {page.params.image && <img src={page.params.image} className="card-img-top" alt={page.title} />}
+            {page.image && (
+              <Image
+                src={ensureLeadingSlash(page.image)}
+                className="card-img-top"
+                width={267}
+                height={267}
+                alt={page.title ?? ''}
+              />
+            )}
             <div className="card-body px-0">
-              {page.params.categories.map((category) => (
-                <a
-                  key={`category-${category.id}`}
-                  href={`/categories/${category.title.toLowerCase()}`}
-                  className="text-primary"
-                >
-                  {category.title}
+              {page.categories?.map((category) => (
+                <a key={`category-${category}`} href={`/categories/${category.toLowerCase()}`} className="text-primary">
+                  {category}
                 </a>
               ))}
-              <a href={page.params.permalink} className="h5 d-block my-3">
+              <a href={page.slug} className="h5 d-block my-3">
                 {page.title}
               </a>
               <div className="mb-3 post-meta">
-                <span>By {page.params.author}</span>
-                {!page.params.hideDate && (
+                <span>By Author</span>
+                {!hideDate && (
                   <>
                     <span className="border-bottom border-primary px-2 mx-1" />
                     <span>
-                      {page.publishDate.toLocaleDateString('en-US', {
+                      {new Date(page.date ?? Date.now()).toLocaleDateString('en-US', {
                         day: '2-digit',
                         month: 'long',
                         year: 'numeric'
@@ -53,8 +48,8 @@ export const Paginator = ({ pages }: PaginatorProps) => {
                   </>
                 )}
               </div>
-              <p className="card-text">{page.params.summary}</p>
-              <a href={page.params.permalink} className="btn btn-outline-primary">
+              <p className="card-text">{page.title} - Summary</p>
+              <a href={page.slug} className="btn btn-outline-primary">
                 read more
               </a>
             </div>
