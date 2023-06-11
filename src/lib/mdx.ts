@@ -1,13 +1,13 @@
-import path from 'path';
 import fs from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
 import { FileMetadata, FrontMatterMetadata } from '@/models';
 
 import { CONTENT_PATH } from '@/lib/constants';
+import { getSlugFromFilename } from '@/lib/utils';
 
 export async function getAllFilesMetadata(folder: string): Promise<FileMetadata[]> {
-  const pattern = path.join(CONTENT_PATH, folder, '**/*.md');
+  const pattern = `${CONTENT_PATH}/${folder}/**/*.{md,mdx}`;
 
   const files = await glob(pattern);
 
@@ -16,7 +16,7 @@ export async function getAllFilesMetadata(folder: string): Promise<FileMetadata[
     const metadata = matter(source).data as FrontMatterMetadata;
     return {
       ...metadata,
-      slug: file
+      slug: getSlugFromFilename(file, CONTENT_PATH)
     };
   });
 }

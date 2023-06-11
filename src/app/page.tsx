@@ -1,5 +1,6 @@
 import { RecentPost } from '@/components/RecentPost';
 import { BlogPosts } from '@/components/BlogPosts';
+import { getAllFilesMetadata } from '@/lib/mdx';
 
 const recentPosts = [
   {
@@ -19,7 +20,13 @@ const recentPosts = [
   }
 ];
 
-export default function Home() {
+async function getData() {
+  return getAllFilesMetadata('blog');
+}
+
+export default async function Home() {
+  const data = await getData();
+
   return (
     <div>
       <section>
@@ -38,7 +45,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <BlogPosts />
+      <BlogPosts pages={data} />
     </div>
   );
 }
