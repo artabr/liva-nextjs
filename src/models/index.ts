@@ -14,3 +14,8 @@ export type FileMetadata = FrontMatterMetadata & {
 };
 
 export type PostMetadata = FileMetadata;
+
+export type Post = PostMetadata & {
+  code: string;
+  filename: string;
+};

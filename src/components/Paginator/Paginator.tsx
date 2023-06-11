@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { PostMetadata } from '@/models';
+import Link from 'next/link';
 
 export type PaginatorProps = {
   pages: PostMetadata[];
@@ -26,13 +27,17 @@ export const Paginator = ({ pages }: PaginatorProps) => {
             )}
             <div className="card-body px-0">
               {page.categories?.map((category) => (
-                <a key={`category-${category}`} href={`/categories/${category.toLowerCase()}`} className="text-primary">
+                <Link
+                  key={`category-${category}`}
+                  href={`/categories/${category.toLowerCase()}`}
+                  className="text-primary"
+                >
                   {category}
-                </a>
+                </Link>
               ))}
-              <a href={page.slug} className="h5 d-block my-3">
+              <Link href={page.slug} className="h5 d-block my-3">
                 {page.title}
-              </a>
+              </Link>
               <div className="mb-3 post-meta">
                 <span>By Author</span>
                 {!hideDate && (
@@ -49,9 +54,9 @@ export const Paginator = ({ pages }: PaginatorProps) => {
                 )}
               </div>
               <p className="card-text">{page.title} - Summary</p>
-              <a href={page.slug} className="btn btn-outline-primary">
+              <Link href={page.slug} className="btn btn-outline-primary">
                 read more
-              </a>
+              </Link>
             </div>
           </article>
         </div>
