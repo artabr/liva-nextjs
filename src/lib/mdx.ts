@@ -6,6 +6,8 @@ import { bundleMDX } from 'mdx-bundler';
 import remarkGfm from 'remark-gfm';
 import remarkFootnotes from 'remark-footnotes';
 import remarkMath from 'remark-math';
+import remarkEmbedder from '@remark-embedder/core';
+import oembedTransformer from '@remark-embedder/transformer-oembed';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
@@ -52,7 +54,8 @@ export async function getFileBySlug(type: string, slug: string): Promise<Post> {
         ...(options.remarkPlugins ?? []),
         remarkGfm,
         [remarkFootnotes, { inlineNotes: true }],
-        remarkMath
+        remarkMath,
+        [remarkEmbedder, { transformers: [oembedTransformer] }]
       ];
       // eslint-disable-next-line no-param-reassign
       options.rehypePlugins = [
