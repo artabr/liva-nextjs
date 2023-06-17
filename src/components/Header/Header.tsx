@@ -1,13 +1,18 @@
 import Link from 'next/link';
-import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
+import {
+  TfiFacebook,
+  TfiTwitterAlt,
+  TfiInstagram,
+  TfiGithub,
+  TfiLinkedin,
+  TfiClose,
+  TfiMenu,
+  TfiSearch
+} from 'react-icons/tfi';
+import Image from 'next/image';
+import { data } from '@/components/Sidebar/mockData';
 
 export const Navigation = () => {
-  const socialLinks = [
-    { id: 1, link: 'https://example.com/social1', icon: 'social-icon-1' },
-    { id: 2, link: 'https://example.com/social2', icon: 'social-icon-2' },
-    { id: 3, link: 'https://example.com/social3', icon: 'social-icon-3' }
-  ];
-
   const mainMenus = [
     {
       id: 1,
@@ -29,9 +34,9 @@ export const Navigation = () => {
       <header className="navigation">
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
-            <a className="navbar-brand mobile-view" href={process.env.PUBLIC_URL}>
-              <img className="img-fluid" src={`${process.env.PUBLIC_URL}/path/to/logo`} alt="Site Title" />
-            </a>
+            <Link className="navbar-brand mobile-view" href="/">
+              <Image className="img-fluid" src="/images/logo.png" width="65" height="34" alt="Site Title" />
+            </Link>
             <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
               <TfiMenu />
             </button>
@@ -39,19 +44,19 @@ export const Navigation = () => {
             <div className="collapse navbar-collapse text-center" id="navigation">
               <div className="desktop-view">
                 <ul className="navbar-nav mr-auto">
-                  {socialLinks.map((social) => (
-                    <li className="nav-item" key={social.id}>
-                      <a className="nav-link" href={social.link}>
-                        <i className={social.icon} />
-                      </a>
+                  {data.socialLinks.map(({ id, link, IconComponent }) => (
+                    <li className="nav-item" key={id}>
+                      <Link className="nav-link" href={link}>
+                        <IconComponent />
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <a className="navbar-brand mx-auto desktop-view" href={process.env.PUBLIC_URL}>
-                <img className="img-fluid" src={`${process.env.PUBLIC_URL}/path/to/logo`} alt="Site Title" />
-              </a>
+              <Link className="navbar-brand mx-auto desktop-view" href="/">
+                <Image className="img-fluid" src="/images/logo.png" width="65" height="34" alt="Site Title" />
+              </Link>
 
               <ul className="navbar-nav">
                 {mainMenus.map((menu) => {

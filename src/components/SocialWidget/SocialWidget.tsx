@@ -1,19 +1,16 @@
 import { data } from '@/components/Sidebar/mockData';
+import Link from 'next/link';
 
-export type SocialWidgetProps = {
-  title?: string;
-};
-
-export const SocialWidget = (props: SocialWidgetProps) => {
+export const SocialWidget = () => {
   return (
     <div className="widget">
       <h4 className="widget-title">Social</h4>
       <ul className="list-inline social-links">
-        {data.socialLinks.map((link, index) => (
-          <li key={`social-link-${index}`} className="list-inline-item">
-            <a href={link.link}>
-              <i className={link.icon} />
-            </a>
+        {data.socialLinks.map(({ id, link, IconComponent }) => (
+          <li key={id} className="list-inline-item">
+            <Link href={link}>
+              <IconComponent />
+            </Link>
           </li>
         ))}
       </ul>

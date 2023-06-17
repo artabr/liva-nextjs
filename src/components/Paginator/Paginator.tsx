@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { PostMetadata } from '@/models';
 import Link from 'next/link';
+import { formatPostDate } from '@/lib/utils';
 
 export type PaginatorProps = {
   pages: PostMetadata[];
@@ -43,13 +44,7 @@ export const Paginator = ({ pages }: PaginatorProps) => {
                 {!hideDate && (
                   <>
                     <span className="border-bottom border-primary px-2 mx-1" />
-                    <span>
-                      {new Date(page.date ?? Date.now()).toLocaleDateString('en-US', {
-                        day: '2-digit',
-                        month: 'long',
-                        year: 'numeric'
-                      })}
-                    </span>
+                    <span>{formatPostDate(page.date)}</span>
                   </>
                 )}
               </div>

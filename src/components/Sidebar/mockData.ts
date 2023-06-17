@@ -1,3 +1,5 @@
+import { TfiFacebook, TfiGithub, TfiInstagram, TfiLinkedin, TfiTwitterAlt } from 'react-icons/tfi';
+
 export const data = {
   aboutPage: {
     title: 'About Page',
@@ -18,9 +20,11 @@ export const data = {
     // Add more tags here if needed
   },
   socialLinks: [
-    { link: 'https://example.com/social-link1', icon: 'fab fa-twitter' },
-    { link: 'https://example.com/social-link2', icon: 'fab fa-facebook' }
-    // Add more social links here if needed
+    { id: 1, link: 'https://example.com/social1', IconComponent: TfiFacebook },
+    { id: 2, link: 'https://example.com/social2', IconComponent: TfiTwitterAlt },
+    { id: 3, link: 'https://example.com/social3', IconComponent: TfiInstagram },
+    { id: 4, link: 'https://example.com/social3', IconComponent: TfiGithub },
+    { id: 5, link: 'https://example.com/social3', IconComponent: TfiLinkedin }
   ],
   advertisementImage: 'https://example.com/promotion.png'
 };
