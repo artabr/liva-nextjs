@@ -11,7 +11,7 @@ export const RecentPost = ({ post }: RecentPostProps) => {
   return (
     <div className="col-lg-4 small-post-border">
       <article className="media">
-        {post.image && <div className="recent-post-thumb mr-3" style={{ backgroundImage: `url(${post.image});` }} />}
+        {post.image && <div className="recent-post-thumb me-3" style={{ backgroundImage: `url(${post.image});` }} />}
         <div className="media-body">
           <div className="mb-3 post-meta">
             <span>By Art</span>

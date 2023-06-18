@@ -16,11 +16,9 @@ export const Newsletter = () => {
             <form className="row justify-content-center">
               <div className="input-group col-md-8">
                 <input type="text" className="form-control" placeholder="Your Email Address" />
-                <div className="input-group-append">
-                  <button type="submit" className="input-group-text btn btn-primary">
-                    Subscribe
-                  </button>
-                </div>
+                <button type="submit" className="input-group-text btn btn-primary">
+                  Subscribe
+                </button>
               </div>
             </form>
           </div>

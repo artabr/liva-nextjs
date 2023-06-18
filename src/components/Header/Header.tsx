@@ -43,7 +43,7 @@ export const Navigation = () => {
 
             <div className="collapse navbar-collapse text-center" id="navigation">
               <div className="desktop-view">
-                <ul className="navbar-nav mr-auto">
+                <ul className="navbar-nav me-auto">
                   {data.socialLinks.map(({ id, link, IconComponent }) => (
                     <li className="nav-item" key={id}>
                       <Link className="nav-link" href={link}>
@@ -115,7 +115,7 @@ export const Navigation = () => {
 
               {process.env.NAV_BUTTON_ENABLE && (
                 /* get start btn */
-                <a href={process.env.NAV_BUTTON_LINK} className="btn btn-primary ml-lg-4" type="button">
+                <a href={process.env.NAV_BUTTON_LINK} className="btn btn-primary ms-lg-4" type="button">
                   {process.env.NAV_BUTTON_LABEL}
                 </a>
               )}

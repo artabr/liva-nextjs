@@ -18,21 +18,21 @@ export const Footer = () => {
                 {siteParams.mobile && (
                   <li className="mb-3">
                     <a className="text-dark" href={`tel:${siteParams.mobile}`}>
-                      <TfiMobile className="mr-3 text-primary" />
+                      <TfiMobile className="me-3 text-primary" />
                       {siteParams.mobile}
                     </a>
                   </li>
                 )}
                 {siteParams.location && (
                   <li className="mb-3">
-                    <TfiLocationPin className="mr-3 text-primary" />
+                    <TfiLocationPin className="me-3 text-primary" />
                     {siteParams.location}
                   </li>
                 )}
                 {siteParams.email && (
                   <li className="mb-3">
                     <a className="text-dark" href={`mailto:${siteParams.email}`}>
-                      <TfiEmail className="mr-3 text-primary" />
+                      <TfiEmail className="me-3 text-primary" />
                       {siteParams.email}
                     </a>
                   </li>
@@ -78,7 +78,10 @@ export const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="col-12 border-top py-4 text-center">{process.env.COPYRIGHT_TEXT}</div>
+          <div className="col-12 border-top py-4 text-center">
+            | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+            Next.js port by <a href="https://artabr.com">Art Abramov</a>
+          </div>
         </div>
       </div>
     </footer>
