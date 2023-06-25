@@ -12,7 +12,7 @@ export const Gallery = ({ gallery }: GalleryProps) => {
         <div className="text-center">
           <h4 className="widget-title">My Gallery</h4>
         </div>
-        <div className="row no-gutters">
+        <div className="row g-0">
           {gallery.map((item) => (
             <div key={item.id} className="col-lg-2 col-md-3 col-sm-4 col-6">
               <a href={item.imageURL} className="venobox" data-gall="gallery">

@@ -1,14 +1,5 @@
 import Link from 'next/link';
-import {
-  TfiFacebook,
-  TfiTwitterAlt,
-  TfiInstagram,
-  TfiGithub,
-  TfiLinkedin,
-  TfiClose,
-  TfiMenu,
-  TfiSearch
-} from 'react-icons/tfi';
+import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
 import Image from 'next/image';
 import { data } from '@/components/Sidebar/mockData';
 
@@ -33,7 +24,7 @@ export const Navigation = () => {
       {/* navigation */}
       <header className="navigation">
         <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+          <nav className="navbar navbar-expand-lg navbar-white bg-transparent border-bottom ps-0">
             <Link className="navbar-brand mobile-view" href="/">
               <Image className="img-fluid" src="/images/logo.png" width="65" height="34" alt="Site Title" />
             </Link>

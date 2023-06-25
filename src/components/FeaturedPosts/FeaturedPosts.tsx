@@ -6,7 +6,7 @@ export const FeaturedPosts = (featuredPosts) => {
           <div className="col-10 featured-post-slider">
             {featuredPosts.map((post) => (
               <article key={post.id} className="card featured-post">
-                <div className="row no-gutters align-items-center">
+                <div className="row g-0 align-items-center">
                   <div className="col-md-5">
                     {post.image && <img src={post.image.src} className="card-img" alt={post.image.title} />}
                   </div>

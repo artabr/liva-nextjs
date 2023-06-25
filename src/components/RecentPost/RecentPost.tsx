@@ -10,9 +10,11 @@ const hideDate = false;
 export const RecentPost = ({ post }: RecentPostProps) => {
   return (
     <div className="col-lg-4 small-post-border">
-      <article className="media">
-        {post.image && <div className="recent-post-thumb me-3" style={{ backgroundImage: `url(${post.image});` }} />}
-        <div className="media-body">
+      <article className="d-flex">
+        <div className="flex-shrink-0">
+          {post.image && <div className="recent-post-thumb me-3" style={{ backgroundImage: `url(${post.image});` }} />}
+        </div>
+        <div className="flex-grow-1 ms-3">
           <div className="mb-3 post-meta">
             <span>By Art</span>
             {!hideDate && (
