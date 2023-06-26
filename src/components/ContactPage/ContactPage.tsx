@@ -20,17 +20,17 @@ export const GetInTouch = ({ title, content, mobile, email, location }: GetInTou
             <div className="row">
               <div className="col-lg-4 small-post-border">
                 <TfiMobile className="h1 text-primary" />
-                <h5 className="font-weight-light my-3">Phone</h5>
+                <h5 className="fw-light my-3">Phone</h5>
                 {mobile}
               </div>
               <div className="col-lg-4 small-post-border">
                 <TfiEmail className="h1 text-primary" />
-                <h5 className="font-weight-light my-3">Email</h5>
+                <h5 className="fw-light my-3">Email</h5>
                 {email}
               </div>
               <div className="col-lg-4 small-post-border">
                 <TfiLocationPin className="h1 text-primary" />
-                <h5 className="font-weight-light my-3">Location</h5>
+                <h5 className="fw-light my-3">Location</h5>
                 {location}
               </div>
             </div>

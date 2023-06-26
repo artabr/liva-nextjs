@@ -21,7 +21,7 @@ export const FeaturedPosts = (featuredPosts) => {
                           </>
                         )}
                       </div>
-                      <a href={post.url} className="h1 font-weight-bold d-block text-dark mb-4 card-title">
+                      <a href={post.url} className="h1 fw-bold d-block text-dark mb-4 card-title">
                         {post.title}
                       </a>
                       <p className="card-text">{post.summary}...</p>

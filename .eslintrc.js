@@ -111,7 +111,44 @@ module.exports = {
           { name: 'badge-info', replacement: 'badge-info' },
           { name: 'badge-light', replacement: 'badge-light' },
           { name: 'badge-dark', replacement: 'badge-dark' },
-          { name: 'badge-pill', replacement: 'rounded-pill' }
+          { name: 'badge-pill', replacement: 'rounded-pill' },
+          // Buttons
+          { name: 'btn-block', replacement: '' },
+          // Card
+          { name: 'card-deck', replacement: '' },
+          { name: 'card-columns', replacement: '' },
+          // Close button
+          { name: 'close', replacement: 'btn-close' },
+          // Jumbotron
+          { name: 'jumbotron-fluid', replacement: '' },
+          { name: 'jumbotron', replacement: '' },
+          // Tooltips
+          { name: 'arrow', replacement: 'tooltip-arrow' },
+          // Utilities
+          { name: 'float-left', replacement: 'float-start' },
+          { name: 'float-right', replacement: 'float-end' },
+          { name: 'border-left', replacement: 'border-start' },
+          { name: 'border-right', replacement: 'border-end' },
+          { name: 'rounded-left', replacement: 'rounded-start' },
+          { name: 'rounded-right', replacement: 'rounded-end' },
+          { name: 'text-left', replacement: 'text-start' },
+          { name: 'text-right', replacement: 'text-end' },
+          { name: 'text-monospace', replacement: 'font-monospace' },
+          { name: 'text-hide', replacement: '' },
+          { name: 'font-weight-bold', replacement: 'fw-bold' },
+          { name: 'font-weight-bolder', replacement: 'fw-bolder' },
+          { name: 'font-weight-normal', replacement: 'fw-normal' },
+          { name: 'font-weight-light', replacement: 'fw-light' },
+          { name: 'font-weight-lighter', replacement: 'fw-lighter' },
+          { name: 'rounded-sm', replacement: 'rounded-0' },
+          { name: 'rounded-lg', replacement: 'rounded-3' },
+          // Helpers
+          { name: 'embed-responsive', replacement: 'ratio' },
+          { name: 'embed-responsive-item', replacement: 'ratio' },
+          { name: 'embed-responsive-21by9', replacement: 'ratio-21x9' },
+          { name: 'embed-responsive-16by9', replacement: 'ratio-16x9' },
+          { name: 'embed-responsive-4by3', replacement: 'ratio-4x3' },
+          { name: 'embed-responsive-1by1', replacement: 'ratio-1x1' }
         ]
       }
     ]
