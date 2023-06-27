@@ -5,8 +5,6 @@ export type RecentPostProps = {
   post: PostMetadata;
 };
 
-const hideDate = false;
-
 export const RecentPost = ({ post }: RecentPostProps) => {
   return (
     <div className="col-lg-4 small-post-border">
@@ -17,12 +15,8 @@ export const RecentPost = ({ post }: RecentPostProps) => {
         <div className="flex-grow-1 ms-3">
           <div className="mb-3 post-meta">
             <span>By Art</span>
-            {!hideDate && (
-              <>
-                <span className="border-bottom border-primary px-2 mx-1" />
-                <span>{formatPostDate(post.date)}</span>
-              </>
-            )}
+            <span className="border-bottom border-primary px-2 mx-1" />
+            <span>{formatPostDate(post.date)}</span>
           </div>
           <a href={post.slug} className="h5 d-block mb-3">
             {post.title}

@@ -9,8 +9,6 @@ export type PaginatorProps = {
 
 const ensureLeadingSlash = (path: string) => (path.startsWith('/') ? path : `/${path}`);
 
-const hideDate = false;
-
 export const Paginator = ({ pages }: PaginatorProps) => {
   return (
     <div className="row">
@@ -41,12 +39,8 @@ export const Paginator = ({ pages }: PaginatorProps) => {
               </Link>
               <div className="mb-3 post-meta">
                 <span>By Author</span>
-                {!hideDate && (
-                  <>
-                    <span className="border-bottom border-primary px-2 mx-1" />
-                    <span>{formatPostDate(page.date)}</span>
-                  </>
-                )}
+                <span className="border-bottom border-primary px-2 mx-1" />
+                <span>{formatPostDate(page.date)}</span>
               </div>
               <p className="card-text">{page.title} - Summary</p>
               <Link href={page.slug} className="btn btn-outline-primary">
