@@ -16,13 +16,9 @@ export const Paginator = ({ pages }: PaginatorProps) => {
         <div key={`post-${index}`} className="col-md-6 mb-4">
           <article className="card">
             {page.image && (
-              <Image
-                src={ensureLeadingSlash(page.image)}
-                className="card-img-top"
-                width={267}
-                height={267}
-                alt={page.title ?? ''}
-              />
+              <div className="card-img-wrapper">
+                <Image src={ensureLeadingSlash(page.image)} className="card-img-top" alt={page.title ?? ''} fill />
+              </div>
             )}
             <div className="card-body px-0">
               {page.categories?.map((category) => (

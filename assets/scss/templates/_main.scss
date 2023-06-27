@@ -9,6 +9,12 @@
   &-img-top {
     border: 0;
     border-radius: 0;
+    object-fit: cover;
+  }
+
+  &-img-wrapper {
+    position: relative;
+    height: 30vh;
   }
 }
 
