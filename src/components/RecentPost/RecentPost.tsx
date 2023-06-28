@@ -1,5 +1,6 @@
 import { PostMetadata } from '@/models';
 import { formatPostDate } from '@/lib/utils';
+import Link from 'next/link';
 
 export type RecentPostProps = {
   post: PostMetadata;
@@ -18,12 +19,12 @@ export const RecentPost = ({ post }: RecentPostProps) => {
             <span className="border-bottom border-primary px-2 mx-1" />
             <span>{formatPostDate(post.date)}</span>
           </div>
-          <a href={post.slug} className="h5 d-block mb-3">
+          <Link href={post.slug} className="h5 d-block mb-3">
             {post.title}
-          </a>
-          <a href={post.slug} className="btn btn-outline-primary">
+          </Link>
+          <Link href={post.slug} className="btn btn-outline-primary">
             read more
-          </a>
+          </Link>
         </div>
       </article>
     </div>

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const SearchList = () => {
   const mockData = [
     {
@@ -18,7 +20,7 @@ export const SearchList = () => {
             {mockData.map((item) => (
               <div className="py-4 border-bottom" key={`summary-${item.id}`}>
                 <h4>
-                  <a href={item.link}>{item.title}</a>
+                  <Link href={item.link}>{item.title}</Link>
                 </h4>
                 <p>{item.snippet}</p>
                 {item.tags && <p>Tags: {item.tags}</p>}

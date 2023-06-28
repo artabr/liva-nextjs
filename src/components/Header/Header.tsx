@@ -53,7 +53,7 @@ export const Navigation = () => {
                 {mainMenus.map((menu) => {
                   return menu.hasChildren ? (
                     <li key={menu.id} className="nav-item dropdown">
-                      <a
+                      <Link
                         className="nav-link dropdown-toggle"
                         href="#"
                         role="button"
@@ -62,12 +62,12 @@ export const Navigation = () => {
                         aria-expanded="false"
                       >
                         {menu.name}
-                      </a>
+                      </Link>
                       <div className="dropdown-menu">
                         {menu.children?.map((child) => (
-                          <a className="dropdown-item" href={child.url} key={child.id}>
+                          <Link className="dropdown-item" href={child.url} key={child.id}>
                             {child.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </li>
@@ -106,9 +106,9 @@ export const Navigation = () => {
 
               {process.env.NAV_BUTTON_ENABLE && (
                 /* get start btn */
-                <a href={process.env.NAV_BUTTON_LINK} className="btn btn-primary ms-lg-4" type="button">
+                <Link href="/" className="btn btn-primary ms-lg-4" type="button">
                   {process.env.NAV_BUTTON_LABEL}
-                </a>
+                </Link>
               )}
             </div>
           </nav>

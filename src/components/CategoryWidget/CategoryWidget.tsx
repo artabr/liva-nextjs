@@ -1,4 +1,5 @@
 import { data } from '@/components/Sidebar/mockData';
+import Link from 'next/link';
 
 export type CategoryWidgetProps = {
   title?: string;
@@ -12,7 +13,7 @@ export const CategoryWidget = (props: CategoryWidgetProps) => {
         <ul className="list-unstyled">
           {Object.entries(data.categories).map(([name, items]) => (
             <li key={`category-${name}`}>
-              <a href={`/categories/${name.toLowerCase()}/`}>{name}</a>
+              <Link href={`/categories/${name.toLowerCase()}/`}>{name}</Link>
             </li>
           ))}
         </ul>

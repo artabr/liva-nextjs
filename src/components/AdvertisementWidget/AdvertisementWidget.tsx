@@ -1,13 +1,9 @@
-import { data } from '@/components/Sidebar/mockData';
+import Image from 'next/image';
 
-export type AdvertisementWidgetProps = {
-  title?: string;
-};
-
-export const AdvertisementWidget = (props: AdvertisementWidgetProps) => {
+export const AdvertisementWidget = () => {
   return (
     <div className="widget">
-      <img src={data.advertisementImage} alt="" className="img-fluid" />
+      <Image className="img-fluid" src="/images/promotion.png" width="318" height="329" alt="" />
     </div>
   );
 };

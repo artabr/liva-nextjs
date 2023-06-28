@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { data } from '@/components/Sidebar/mockData';
 
 export type TagWidgetProps = {
@@ -12,9 +13,9 @@ export const TagWidget = (props: TagWidgetProps) => {
         <ul className="list-inline">
           {Object.entries(data.tags).map(([name, items]) => (
             <li key={`tag-${name}`} className="list-inline-item">
-              <a href={`/tags/${name.toLowerCase()}/`} className="d-block p-2 bg-primary text-white">
+              <Link href={`/tags/${name.toLowerCase()}/`} className="d-block p-2 bg-primary text-white">
                 {name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

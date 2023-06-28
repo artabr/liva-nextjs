@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export type GalleryProps = {
   gallery: {
     id: string;
@@ -15,9 +17,9 @@ export const Gallery = ({ gallery }: GalleryProps) => {
         <div className="row g-0">
           {gallery.map((item) => (
             <div key={item.id} className="col-lg-2 col-md-3 col-sm-4 col-6">
-              <a href={item.imageURL} className="venobox" data-gall="gallery">
+              <Link href={item.imageURL} className="venobox" data-gall="gallery">
                 <img className="img-fluid w-100" src={item.imageURL} alt="" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>

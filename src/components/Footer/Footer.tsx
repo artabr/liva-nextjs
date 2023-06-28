@@ -1,4 +1,6 @@
 import { TfiEmail, TfiLocationPin, TfiMobile } from 'react-icons/tfi';
+import Link from 'next/link';
+import Image from 'next/image';
 import { siteParams, taxonomies, footerMenus } from './mockData';
 
 export const Footer = () => {
@@ -7,9 +9,9 @@ export const Footer = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 text-center mb-5">
-            <a href={process.env.BASE_URL}>
-              <img src={process.env.LOGO_URL} alt={process.env.SITE_TITLE} />
-            </a>
+            <Link href="/">
+              <Image src="/images/logo.png" width="65" height="34" alt="Site Title" />
+            </Link>
           </div>
           {(siteParams.mobile || siteParams.location || siteParams.email) && (
             <div className="col-lg-3 col-sm-6 mb-5">
@@ -17,10 +19,10 @@ export const Footer = () => {
               <ul className="list-unstyled">
                 {siteParams.mobile && (
                   <li className="mb-3">
-                    <a className="text-dark" href={`tel:${siteParams.mobile}`}>
+                    <Link className="text-dark" href={`tel:${siteParams.mobile}`}>
                       <TfiMobile className="me-3 text-primary" />
                       {siteParams.mobile}
-                    </a>
+                    </Link>
                   </li>
                 )}
                 {siteParams.location && (
@@ -31,10 +33,10 @@ export const Footer = () => {
                 )}
                 {siteParams.email && (
                   <li className="mb-3">
-                    <a className="text-dark" href={`mailto:${siteParams.email}`}>
+                    <Link className="text-dark" href={`mailto:${siteParams.email}`}>
                       <TfiEmail className="me-3 text-primary" />
                       {siteParams.email}
-                    </a>
+                    </Link>
                   </li>
                 )}
               </ul>
@@ -45,9 +47,9 @@ export const Footer = () => {
             <ul className="list-unstyled">
               {siteParams.social.map((item) => (
                 <li className="mb-3" key={item.id}>
-                  <a className="text-dark" href={item.link}>
+                  <Link className="text-dark" href={item.link}>
                     {item.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -58,9 +60,9 @@ export const Footer = () => {
               <ul className="list-unstyled">
                 {Object.entries(taxonomies.categories).map(([name]) => (
                   <li className="mb-3" key={name}>
-                    <a className="text-dark" href={`categories/${name.toLowerCase()}/`}>
+                    <Link className="text-dark" href={`categories/${name.toLowerCase()}/`}>
                       {name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -71,16 +73,16 @@ export const Footer = () => {
             <ul className="list-unstyled">
               {footerMenus.map((item) => (
                 <li className="mb-3" key={item.id}>
-                  <a className="text-dark" href={item.URL}>
+                  <Link className="text-dark" href={item.URL}>
                     {item.Name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="col-12 border-top py-4 text-center">
-            | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
-            Next.js port by <a href="https://artabr.com">Art Abramov</a>
+            | copyright © 2021 <Link href="https://themefisher.com/hugo-themes/">Themefisher</Link> All Rights Reserved
+            | Next.js port by <Link href="https://artabr.com">Art Abramov</Link>
           </div>
         </div>
       </div>
