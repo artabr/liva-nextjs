@@ -139,6 +139,18 @@
   }
 }
 
+/* single post */
+.single {
+  &-img {
+    object-fit: cover;
+  }
+
+  &-img-wrapper {
+    position: relative;
+    height: 40vh;
+  }
+}
+
 /* widget */
 .widgets {
   padding-left: 25px;

@@ -39,13 +39,9 @@ export const SinglePost = (props: SinglePostProps) => {
               </span>
             </div>
             {image && (
-              <Image
-                src={ensureLeadingSlash(image)}
-                className="img-fluid w-100 mb-4"
-                width={267}
-                height={267}
-                alt={title ?? ''}
-              />
+              <div className="single-img-wrapper mb-4">
+                <Image src={ensureLeadingSlash(image)} className="single-img" alt={title ?? ''} fill />
+              </div>
             )}
             <div className="content mb-5">
               <ContentComponent />

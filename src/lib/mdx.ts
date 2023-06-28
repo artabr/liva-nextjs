@@ -34,7 +34,7 @@ export async function getAllFilesMetadata(folder: string): Promise<FileMetadata[
   });
 }
 
-export async function getFileBySlug(type: string, slug: string): Promise<Post> {
+export async function getFileBySlug(type: string, slug = 'index'): Promise<Post> {
   const mdxPath = path.join(root, CONTENT_PATH, type, `${slug}.mdx`);
   const mdPath = path.join(root, CONTENT_PATH, type, `${slug}.md`);
   const source = fs.existsSync(mdxPath) ? fs.readFileSync(mdxPath, 'utf8') : fs.readFileSync(mdPath, 'utf8');
