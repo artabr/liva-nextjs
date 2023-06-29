@@ -2,15 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Post } from '@/models';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
-import { useMemo } from 'react';
-import { getMDXComponent } from 'mdx-bundler/client';
+import { MDXComponent } from '@/components/MDXComponent';
 
 export type SinglePostProps = Post;
 
 export const SinglePost = (props: SinglePostProps) => {
   const { categories, title, date, image, code } = props;
-
-  const ContentComponent = useMemo(() => getMDXComponent(code), [code]);
 
   return (
     <section className="section-sm">
@@ -44,7 +41,7 @@ export const SinglePost = (props: SinglePostProps) => {
               </div>
             )}
             <div className="content mb-5">
-              <ContentComponent />
+              <MDXComponent code={code} />
             </div>
           </div>
         </div>

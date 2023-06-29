@@ -12,7 +12,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrismPlus from 'rehype-prism-plus';
-import { FileMetadata, FrontMatterMetadata, Post } from '@/models';
+import { FrontMatterMetadata, WithFiledata, WithSlug } from '@/models';
 
 import { CONTENT_PATH } from '@/lib/constants';
 import { getSlugFromFilename } from '@/lib/utils';
@@ -32,14 +32,14 @@ export async function getFileMetadata<T>(type: string, slug = 'index'): Promise<
   };
 }
 
-export async function getAllFilesMetadata(folder: string): Promise<FileMetadata[]> {
+export async function getAllFilesMetadata<T>(folder: string): Promise<(T & { slug: string })[]> {
   const pattern = `${CONTENT_PATH}/${folder}/**/*.{md,mdx}`;
 
   const files = await glob(pattern);
 
   return files.map((file) => {
     const source = fs.readFileSync(file, 'utf8');
-    const metadata = matter(source).data as FrontMatterMetadata;
+    const metadata = matter(source).data as T;
     return {
       ...metadata,
       slug: getSlugFromFilename(file, CONTENT_PATH)
@@ -47,7 +47,10 @@ export async function getAllFilesMetadata(folder: string): Promise<FileMetadata[
   });
 }
 
-export async function getFileBySlug(type: string, slug = 'index'): Promise<Post> {
+export async function getFileBySlug<T extends FrontMatterMetadata>(
+  type: string,
+  slug = 'index'
+): Promise<WithFiledata<WithSlug<T>>> {
   const mdxPath = path.join(root, CONTENT_PATH, type, `${slug}.mdx`);
   const mdPath = path.join(root, CONTENT_PATH, type, `${slug}.md`);
   const source = fs.existsSync(mdxPath) ? fs.readFileSync(mdxPath, 'utf8') : fs.readFileSync(mdPath, 'utf8');
@@ -58,7 +61,7 @@ export async function getFileBySlug(type: string, slug = 'index'): Promise<Post>
     process.env.ESBUILD_BINARY_PATH = path.join(root, 'node_modules', 'esbuild', 'bin', 'esbuild');
   }
 
-  const { code, frontmatter } = await bundleMDX<FrontMatterMetadata>({
+  const { code, frontmatter } = await bundleMDX<T>({
     source,
     cwd: path.join(root, 'components'),
     mdxOptions: (options) => {

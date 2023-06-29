@@ -1,15 +1,12 @@
 import { Post } from '@/models';
-import { useMemo } from 'react';
-import { getMDXComponent } from 'mdx-bundler/client';
 import Image from 'next/image';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import { MDXComponent } from '@/components/MDXComponent';
 
 export type SinglePostProps = Post;
 
 export const AboutPage = (props: SinglePostProps) => {
   const { title, image, code } = props;
-
-  const ContentComponent = useMemo(() => getMDXComponent(code), [code]);
 
   return (
     <section className="section-sm">
@@ -27,7 +24,7 @@ export const AboutPage = (props: SinglePostProps) => {
             )}
             <h4 className="widget-title">{title}</h4>
             <div className="content">
-              <ContentComponent />
+              <MDXComponent code={code} />
             </div>
           </div>
         </div>
