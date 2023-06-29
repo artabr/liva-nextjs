@@ -3,22 +3,20 @@ import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
 import Image from 'next/image';
 import { data } from '@/components/Sidebar/mockData';
 
-export const Navigation = () => {
-  const mainMenus = [
-    {
-      id: 1,
-      name: 'Menu 1',
-      hasChildren: true,
-      children: [
-        { id: 1, name: 'Child 1', url: 'https://example.com/child1' },
-        { id: 2, name: 'Child 2', url: 'https://example.com/child2' }
-      ]
-    },
-    { id: 2, name: 'About', hasChildren: false, url: '/about' },
-    { id: 3, name: 'Contact', hasChildren: false, url: '/contact' },
-    { id: 4, name: 'Blog', hasChildren: false, url: '/blog' }
-  ];
+export type NavigationItem = {
+  title: string;
+  url: string;
+  submenu?: {
+    title: string;
+    url: string;
+  }[];
+};
 
+export type NavigationProps = {
+  items: NavigationItem[];
+};
+
+export const Navigation = (props: NavigationProps) => {
   return (
     <>
       {/* navigation */}
@@ -50,31 +48,31 @@ export const Navigation = () => {
               </Link>
 
               <ul className="navbar-nav">
-                {mainMenus.map((menu) => {
-                  return menu.hasChildren ? (
-                    <li key={menu.id} className="nav-item dropdown">
+                {props.items.map((menuItem) => {
+                  return menuItem.submenu && menuItem.submenu.length !== 0 ? (
+                    <li key={menuItem.title} className="nav-item dropdown">
                       <Link
                         className="nav-link dropdown-toggle"
-                        href="#"
+                        href={menuItem.url}
                         role="button"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
                       >
-                        {menu.name}
+                        {menuItem.title}
                       </Link>
                       <div className="dropdown-menu">
-                        {menu.children?.map((child) => (
-                          <Link className="dropdown-item" href={child.url} key={child.id}>
-                            {child.name}
+                        {menuItem.submenu.map((subMenuItem) => (
+                          <Link className="dropdown-item" href={subMenuItem.url} key={subMenuItem.title}>
+                            {subMenuItem.title}
                           </Link>
                         ))}
                       </div>
                     </li>
                   ) : (
-                    <li key={menu.id} className="nav-item">
-                      <Link className="nav-link" href={menu.url || '/'}>
-                        {menu.name}
+                    <li key={menuItem.title} className="nav-item">
+                      <Link className="nav-link" href={menuItem.url}>
+                        {menuItem.title}
                       </Link>
                     </li>
                   );

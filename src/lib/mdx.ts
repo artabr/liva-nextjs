@@ -19,6 +19,19 @@ import { getSlugFromFilename } from '@/lib/utils';
 
 const root = process.cwd();
 
+export async function getFileMetadata<T>(type: string, slug = 'index'): Promise<T & { slug: string }> {
+  const mdxPath = path.join(root, CONTENT_PATH, type, `${slug}.mdx`);
+  const mdPath = path.join(root, CONTENT_PATH, type, `${slug}.md`);
+  const file = fs.existsSync(mdxPath) ? mdxPath : mdPath;
+  const source = fs.readFileSync(file, 'utf8');
+
+  const metadata = matter(source).data as T;
+  return {
+    ...metadata,
+    slug: getSlugFromFilename(file, CONTENT_PATH)
+  };
+}
+
 export async function getAllFilesMetadata(folder: string): Promise<FileMetadata[]> {
   const pattern = `${CONTENT_PATH}/${folder}/**/*.{md,mdx}`;
 

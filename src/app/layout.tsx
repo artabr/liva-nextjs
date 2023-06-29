@@ -1,8 +1,9 @@
 import './globals.scss';
 import { Inter } from 'next/font/google';
-import { Navigation } from '@/components/Header';
+import { Navigation, NavigationItem } from '@/components/Header';
 import { Newsletter } from '@/components/Newsletter/Newsletter';
 import { Footer } from '@/components/Footer';
+import { getFileMetadata } from '@/lib/mdx';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,11 +13,21 @@ export const metadata = {
     whether that's personal, travel, news, photography, tech, food, or other niches.`
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type HeaderMenu = {
+  items: NavigationItem[];
+};
+
+async function getData() {
+  return getFileMetadata<HeaderMenu>('_metadata', 'header-menu');
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const data = await getData();
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
+        <Navigation items={data.items} />
         {children}
         <Newsletter />
         <Footer />
