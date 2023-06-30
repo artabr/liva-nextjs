@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
 import Image from 'next/image';
 import { data } from '@/components/Sidebar/mockData';
+import { DropdownMenu } from '@/components/DropdownMenu';
 
 export type NavigationItem = {
   title: string;
@@ -50,25 +51,7 @@ export const Navigation = (props: NavigationProps) => {
               <ul className="navbar-nav">
                 {props.items.map((menuItem) => {
                   return menuItem.submenu && menuItem.submenu.length !== 0 ? (
-                    <li key={menuItem.title} className="nav-item dropdown">
-                      <Link
-                        className="nav-link dropdown-toggle"
-                        href={menuItem.url}
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        {menuItem.title}
-                      </Link>
-                      <div className="dropdown-menu">
-                        {menuItem.submenu.map((subMenuItem) => (
-                          <Link className="dropdown-item" href={subMenuItem.url} key={subMenuItem.title}>
-                            {subMenuItem.title}
-                          </Link>
-                        ))}
-                      </div>
-                    </li>
+                    <DropdownMenu title={menuItem.title} url={menuItem.url} submenu={menuItem.submenu} />
                   ) : (
                     <li key={menuItem.title} className="nav-item">
                       <Link className="nav-link" href={menuItem.url}>

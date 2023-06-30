@@ -38,6 +38,8 @@ module.exports = {
     'react/require-default-props': 'off',
     '@typescript-eslint/no-var-requires': 'warn',
     'jsx-a11y/anchor-is-valid': 'warn',
+    'jsx-a11y/interactive-supports-focus': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'warn',
     'react/no-array-index-key': 'warn',
     'react/no-unused-prop-types': 'warn',
     'deprecated-classnames/deprecated-classnames': [
