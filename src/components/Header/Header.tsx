@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
+import { TfiClose, TfiGithub, TfiMenu, TfiSearch } from 'react-icons/tfi';
 import Image from 'next/image';
-import { data } from '@/components/Sidebar/mockData';
 import { DropdownMenu } from '@/components/DropdownMenu';
+import { Icon } from '@/components/Icon';
 
 export type NavigationItem = {
   title: string;
@@ -15,7 +15,14 @@ export type NavigationItem = {
 
 export type NavigationProps = {
   items: NavigationItem[];
+  socialLinks: {
+    title: string;
+    url: string;
+    icon: string;
+  }[];
 };
+
+const IconComponent = TfiGithub;
 
 export const Navigation = (props: NavigationProps) => {
   return (
@@ -34,10 +41,10 @@ export const Navigation = (props: NavigationProps) => {
             <div className="collapse navbar-collapse text-center" id="navigation">
               <div className="desktop-view">
                 <ul className="navbar-nav me-auto">
-                  {data.socialLinks.map(({ id, link, IconComponent }) => (
-                    <li className="nav-item" key={id}>
-                      <Link className="nav-link" href={link}>
-                        <IconComponent />
+                  {props.socialLinks.map(({ title, url, icon }) => (
+                    <li className="nav-item" key={title}>
+                      <Link className="nav-link" href={url}>
+                        <Icon icon={icon} />
                       </Link>
                     </li>
                   ))}

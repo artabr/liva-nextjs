@@ -18,22 +18,30 @@ type HeaderMenuData = {
   items: NavigationItem[];
 };
 
+type SiteInfoData = {
+  socialLinks: {
+    title: string;
+    url: string;
+  }[];
+};
+
 type FooterData = FooterProps;
 
 async function getData() {
+  const siteInfo = await getFileMetadata<SiteInfoData>('_metadata', 'site-info');
   const headerMenu = await getFileMetadata<HeaderMenuData>('_metadata', 'header-menu');
   const footer = await getFileBySlug<FooterData>('_metadata', 'footer');
 
-  return { headerMenu, footer };
+  return { headerMenu, footer, siteInfo };
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { headerMenu, footer } = await getData();
+  const { headerMenu, footer, siteInfo } = await getData();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation items={headerMenu.items} />
+        <Navigation items={headerMenu.items} socialLinks={siteInfo.socialLinks} />
         {children}
         <Newsletter />
         <Footer {...footer}>

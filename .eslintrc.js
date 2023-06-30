@@ -26,6 +26,8 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     'import/newline-after-import': 'error',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
