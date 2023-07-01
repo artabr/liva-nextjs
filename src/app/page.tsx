@@ -3,7 +3,7 @@ import { getAllFilesMetadata } from '@/lib/mdx';
 import { PillarPost } from '@/components/PillarPost';
 import { PostMetadata } from '@/models';
 import { Paginator } from '@/components/Paginator';
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/server-components/Sidebar';
 import { Pagination } from '@/components/Pagination';
 
 async function getData() {

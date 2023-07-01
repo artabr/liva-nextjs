@@ -1,4 +1,4 @@
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/server-components/Sidebar';
 import { Pagination } from '@/components/Pagination';
 
 export default async function BlogLayout({ children }: { children: React.ReactNode }) {

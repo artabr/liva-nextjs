@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { data } from '@/components/Sidebar/mockData';
+import { data } from '@/server-components/Sidebar/mockData';
 
 export type TagWidgetProps = {
   title?: string;

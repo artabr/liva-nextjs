@@ -1,4 +1,4 @@
-import { data } from '@/components/Sidebar/mockData';
+import { data } from '@/server-components/Sidebar/mockData';
 import Link from 'next/link';
 import Image from 'next/image';
 
