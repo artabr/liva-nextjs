@@ -5,6 +5,7 @@ import { Newsletter } from '@/components/Newsletter/Newsletter';
 import { Footer, FooterProps } from '@/components/Footer';
 import { getFileBySlug, getFileMetadata } from '@/lib/mdx';
 import { MDXComponent } from '@/components/MDXComponent';
+import { IconLink } from '@/models';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,10 +20,7 @@ type HeaderMenuData = {
 };
 
 type SiteInfoData = {
-  socialLinks: {
-    title: string;
-    url: string;
-  }[];
+  socialLinks: IconLink[];
 };
 
 type FooterData = FooterProps;

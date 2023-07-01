@@ -2,9 +2,10 @@ import { RecentPost } from '@/components/RecentPost';
 import { BlogPosts } from '@/components/BlogPosts';
 import { getAllFilesMetadata } from '@/lib/mdx';
 import { PillarPost } from '@/components/PillarPost';
+import { PostMetadata } from '@/models';
 
 async function getData() {
-  return getAllFilesMetadata('blog');
+  return getAllFilesMetadata<PostMetadata>('blog');
 }
 
 export default async function Home() {

@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { TfiClose, TfiGithub, TfiMenu, TfiSearch } from 'react-icons/tfi';
+import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
 import Image from 'next/image';
 import { DropdownMenu } from '@/components/DropdownMenu';
 import { Icon } from '@/components/Icon';
+import { IconLink } from '@/models';
 
 export type NavigationItem = {
   title: string;
@@ -15,14 +16,8 @@ export type NavigationItem = {
 
 export type NavigationProps = {
   items: NavigationItem[];
-  socialLinks: {
-    title: string;
-    url: string;
-    icon: string;
-  }[];
+  socialLinks: IconLink[];
 };
-
-const IconComponent = TfiGithub;
 
 export const Navigation = (props: NavigationProps) => {
   return (

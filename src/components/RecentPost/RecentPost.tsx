@@ -1,9 +1,9 @@
-import { PostMetadata } from '@/models';
+import { PostFileMetadata } from '@/models';
 import { formatPostDate } from '@/lib/utils';
 import Link from 'next/link';
 
 export type RecentPostProps = {
-  post: PostMetadata;
+  post: PostFileMetadata;
 };
 
 export const RecentPost = ({ post }: RecentPostProps) => {

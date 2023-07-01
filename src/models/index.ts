@@ -13,15 +13,20 @@ export type PostMetadata = FrontMatterMetadata & {
   tags?: string[];
 };
 
-export type WithSlug<T> = T & {
+export type FileData = {
   slug: string;
 };
 
-export type PostFileMetadata = WithSlug<PostMetadata>;
+export type PostFileMetadata = PostMetadata & FileData;
 
-export type WithFiledata<T> = T & {
+export type FileContent = {
   code: string;
-  filename: string;
 };
 
-export type Post = WithFiledata<PostFileMetadata>;
+export type Post = PostFileMetadata & FileContent;
+
+export type IconLink = {
+  title: string;
+  url: string;
+  icon: string;
+};

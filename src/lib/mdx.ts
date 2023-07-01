@@ -12,14 +12,17 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrismPlus from 'rehype-prism-plus';
-import { FrontMatterMetadata, WithFiledata, WithSlug } from '@/models';
+import { FileContent, FileData, FrontMatterMetadata } from '@/models';
 
 import { CONTENT_PATH } from '@/lib/constants';
 import { getSlugFromFilename } from '@/lib/utils';
 
 const root = process.cwd();
 
-export async function getFileMetadata<T>(type: string, slug = 'index'): Promise<T & { slug: string }> {
+export async function getFileMetadata<T extends FrontMatterMetadata>(
+  type: string,
+  slug = 'index'
+): Promise<T & FileData> {
   const mdxPath = path.join(root, CONTENT_PATH, type, `${slug}.mdx`);
   const mdPath = path.join(root, CONTENT_PATH, type, `${slug}.md`);
   const file = fs.existsSync(mdxPath) ? mdxPath : mdPath;
@@ -32,7 +35,7 @@ export async function getFileMetadata<T>(type: string, slug = 'index'): Promise<
   };
 }
 
-export async function getAllFilesMetadata<T>(folder: string): Promise<(T & { slug: string })[]> {
+export async function getAllFilesMetadata<T extends FrontMatterMetadata>(folder: string): Promise<(T & FileData)[]> {
   const pattern = `${CONTENT_PATH}/${folder}/**/*.{md,mdx}`;
 
   const files = await glob(pattern);
@@ -50,7 +53,7 @@ export async function getAllFilesMetadata<T>(folder: string): Promise<(T & { slu
 export async function getFileBySlug<T extends FrontMatterMetadata>(
   type: string,
   slug = 'index'
-): Promise<WithFiledata<WithSlug<T>>> {
+): Promise<T & FileData & FileContent> {
   const mdxPath = path.join(root, CONTENT_PATH, type, `${slug}.mdx`);
   const mdPath = path.join(root, CONTENT_PATH, type, `${slug}.md`);
   const source = fs.existsSync(mdxPath) ? fs.readFileSync(mdxPath, 'utf8') : fs.readFileSync(mdPath, 'utf8');
@@ -88,7 +91,6 @@ export async function getFileBySlug<T extends FrontMatterMetadata>(
   return {
     ...frontmatter,
     code,
-    slug,
-    filename: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`
+    slug
   };
 }

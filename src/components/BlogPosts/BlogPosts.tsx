@@ -1,10 +1,10 @@
 import { Paginator } from '@/components/Paginator';
 import { Pagination } from '@/components/Pagination';
 import { Sidebar } from '@/components/Sidebar';
-import { PostMetadata } from '@/models';
+import { PostFileMetadata } from '@/models';
 
 export type BlogPostsProps = {
-  pages: PostMetadata[];
+  pages: PostFileMetadata[];
 };
 
 export const BlogPosts = (props: BlogPostsProps) => {
