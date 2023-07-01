@@ -1,5 +1,5 @@
-import { BlogPosts } from '@/components/BlogPosts';
 import { getAllFilesMetadata } from '@/lib/mdx';
+import { Paginator } from '@/components/Paginator';
 
 async function getData() {
   return getAllFilesMetadata('blog');
@@ -8,5 +8,5 @@ async function getData() {
 export default async function Blog() {
   const data = await getData();
 
-  return <BlogPosts pages={data} />;
+  return <Paginator pages={data} />;
 }

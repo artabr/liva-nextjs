@@ -5,7 +5,7 @@ import { Newsletter } from '@/components/Newsletter/Newsletter';
 import { Footer, FooterProps } from '@/components/Footer';
 import { getFileBySlug, getFileMetadata } from '@/lib/mdx';
 import { MDXComponent } from '@/components/MDXComponent';
-import { IconLink } from '@/models';
+import { getSiteInfo } from '@/lib/fetch-utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,14 +19,10 @@ type HeaderMenuData = {
   items: NavigationItem[];
 };
 
-type SiteInfoData = {
-  socialLinks: IconLink[];
-};
-
 type FooterData = FooterProps;
 
 async function getData() {
-  const siteInfo = await getFileMetadata<SiteInfoData>('_metadata', 'site-info');
+  const siteInfo = await getSiteInfo();
   const headerMenu = await getFileMetadata<HeaderMenuData>('_metadata', 'header-menu');
   const footer = await getFileBySlug<FooterData>('_metadata', 'footer');
 

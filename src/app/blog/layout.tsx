@@ -1,21 +1,13 @@
-import { Paginator } from '@/components/Paginator';
-import { Pagination } from '@/components/Pagination';
 import { Sidebar } from '@/components/Sidebar';
-import { PostFileMetadata } from '@/models';
+import { Pagination } from '@/components/Pagination';
 
-export type BlogPostsProps = {
-  pages: PostFileMetadata[];
-};
-
-export const BlogPosts = (props: BlogPostsProps) => {
+export default async function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <section className="section pb-0">
       <div className="container">
         <div className="row">
           <div className="col-lg-8 mb-5 mb-lg-0">
-            <div className="row">
-              <Paginator pages={props.pages} />
-            </div>
+            <div className="row">{children}</div>
           </div>
           <Sidebar />
           <div className="col-12 mt-5">
@@ -25,4 +17,4 @@ export const BlogPosts = (props: BlogPostsProps) => {
       </div>
     </section>
   );
-};
+}

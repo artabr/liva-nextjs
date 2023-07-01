@@ -1,8 +1,10 @@
 import { RecentPost } from '@/components/RecentPost';
-import { BlogPosts } from '@/components/BlogPosts';
 import { getAllFilesMetadata } from '@/lib/mdx';
 import { PillarPost } from '@/components/PillarPost';
 import { PostMetadata } from '@/models';
+import { Paginator } from '@/components/Paginator';
+import { Sidebar } from '@/components/Sidebar';
+import { Pagination } from '@/components/Pagination';
 
 async function getData() {
   return getAllFilesMetadata<PostMetadata>('blog');
@@ -30,7 +32,21 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <BlogPosts pages={data} />
+      <section className="section pb-0">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 mb-5 mb-lg-0">
+              <div className="row">
+                <Paginator pages={data} />
+              </div>
+            </div>
+            <Sidebar />
+            <div className="col-12 mt-5">
+              <Pagination />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

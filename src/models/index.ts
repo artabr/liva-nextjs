@@ -30,3 +30,7 @@ export type IconLink = {
   url: string;
   icon: string;
 };
+
+export type SiteInfoData = {
+  socialLinks: IconLink[];
+};
