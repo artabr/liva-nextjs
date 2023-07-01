@@ -1,5 +1,5 @@
 import { PostFileInfo } from '@/models';
-import { formatPostDate } from '@/lib/utils';
+import { formatPostDate, getBlogLink } from '@/lib/utils';
 import Link from 'next/link';
 
 export type RecentPostProps = {
@@ -19,10 +19,10 @@ export const RecentPost = ({ post }: RecentPostProps) => {
             <span className="border-bottom border-primary px-2 mx-1" />
             <span>{formatPostDate(post.date)}</span>
           </div>
-          <Link href={post.slug} className="h5 d-block mb-3">
+          <Link href={getBlogLink(post.slug)} className="h5 d-block mb-3">
             {post.title}
           </Link>
-          <Link href={post.slug} className="btn btn-outline-primary">
+          <Link href={getBlogLink(post.slug)} className="btn btn-outline-primary">
             read more
           </Link>
         </div>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { PostFileInfo } from '@/models';
 import Link from 'next/link';
-import { formatPostDate } from '@/lib/utils';
+import { formatPostDate, getBlogLink } from '@/lib/utils';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 
 export type PillarPostProps = {
@@ -27,7 +27,7 @@ export const PillarPost = ({ post }: PillarPostProps) => {
                 <span className="border-bottom border-primary px-2 mx-1" />
                 <span>{formatPostDate(post.date)}</span>
               </div>
-              <Link href={post.slug} className="h1 fw-bold d-block text-dark mb-4 card-title">
+              <Link href={getBlogLink(getBlogLink(post.slug))} className="h1 fw-bold d-block text-dark mb-4 card-title">
                 {post.title}
               </Link>
               <p className="card-text">{post.description}...</p>

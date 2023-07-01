@@ -42,7 +42,7 @@ export async function getAllFilesMetadata<T extends FrontMatter>(folder: string)
     const metadata = matter(source).data as T;
     return {
       ...metadata,
-      slug: getSlugFromFilename(file, CONTENT_PATH)
+      slug: getSlugFromFilename(file, CONTENT_PATH, folder)
     };
   });
 }

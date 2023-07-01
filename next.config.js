@@ -7,6 +7,10 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: false
+  },
+  output: 'export',
+  images: {
+    unoptimized: true
   }
 };
 

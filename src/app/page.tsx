@@ -5,6 +5,7 @@ import { PostInfo } from '@/models';
 import { Paginator } from '@/components/Paginator';
 import { Sidebar } from '@/server-components/Sidebar';
 import { Pagination } from '@/components/Pagination';
+import { getBlogLink } from '@/lib/utils';
 
 async function getData() {
   return getAllFilesMetadata<PostInfo>('blog');
@@ -27,7 +28,7 @@ export default async function Home() {
         <div className="container">
           <div className="row">
             {recentPosts.map((post) => (
-              <RecentPost key={post.slug} post={post} />
+              <RecentPost key={getBlogLink(post.slug)} post={post} />
             ))}
           </div>
         </div>

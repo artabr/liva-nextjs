@@ -1,5 +1,11 @@
-export function getSlugFromFilename(filename: string, contentPath: string) {
-  return filename.replace(contentPath, '').replace(/\.(mdx|md)/, '');
+export function getSlugFromFilename(filename: string, contentPath: string, folder?: string) {
+  const folderPath = folder ? `/${folder}` : '';
+
+  return filename.replace(`${contentPath}${folderPath}`, '').replace(/\.(mdx|md)/, '');
+}
+
+export function getBlogLink(slug: string) {
+  return `/blog${slug}`;
 }
 
 export function formatPostDate(dateString?: string) {

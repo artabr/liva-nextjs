@@ -8,7 +8,7 @@ export const getBlogs = async () => {
   const siteTags = [...new Set(postsMetadata.map((post) => post.tags).flat())];
 
   return {
-    blogs: postsMetadata,
+    posts: postsMetadata,
     categories: siteCategories,
     tags: siteTags
   };
