@@ -4,16 +4,17 @@ import { CategoryWidget } from '@/server-components/CategoryWidget';
 import { SocialWidget } from '@/server-components/SocialWidget';
 import { TagWidget } from '@/server-components/TagWidget';
 
-export const Sidebar = () => {
+export default async function Sidebar() {
   return (
     <div className="col-lg-4">
       <div className="widgets">
         <AboutWidget />
         <CategoryWidget />
         <TagWidget />
+        {/* @ts-expect-error Async Server Component */}
         <SocialWidget />
         <AdvertisementWidget />
       </div>
     </div>
   );
-};
+}

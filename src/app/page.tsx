@@ -40,6 +40,7 @@ export default async function Home() {
                 <Paginator pages={data} />
               </div>
             </div>
+            {/* @ts-expect-error Async Server Component */}
             <Sidebar />
             <div className="col-12 mt-5">
               <Pagination />
