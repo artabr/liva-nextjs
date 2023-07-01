@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { PostFileMetadata } from '@/models';
+import { PostFileInfo } from '@/models';
 import Link from 'next/link';
 import { formatPostDate } from '@/lib/utils';
 
 export type PaginatorProps = {
-  pages: PostFileMetadata[];
+  pages: PostFileInfo[];
 };
 
 const ensureLeadingSlash = (path: string) => (path.startsWith('/') ? path : `/${path}`);

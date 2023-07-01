@@ -1,10 +1,10 @@
-export type FrontMatterMetadata = {
+export type FrontMatter = {
   title?: string;
   type?: string;
   [key: string]: unknown;
 };
 
-export type PostMetadata = FrontMatterMetadata & {
+export type PostInfo = FrontMatter & {
   date?: string;
   draft?: boolean;
   image?: string;
@@ -13,17 +13,17 @@ export type PostMetadata = FrontMatterMetadata & {
   tags?: string[];
 };
 
-export type FileData = {
+export type FileInfo = {
   slug: string;
 };
 
-export type PostFileMetadata = PostMetadata & FileData;
+export type PostFileInfo = PostInfo & FileInfo;
 
 export type FileContent = {
   code: string;
 };
 
-export type Post = PostFileMetadata & FileContent;
+export type Post = PostFileInfo & FileContent;
 
 export type IconLink = {
   title: string;

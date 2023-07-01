@@ -1,13 +1,13 @@
 import { RecentPost } from '@/components/RecentPost';
 import { getAllFilesMetadata } from '@/lib/mdx';
 import { PillarPost } from '@/components/PillarPost';
-import { PostMetadata } from '@/models';
+import { PostInfo } from '@/models';
 import { Paginator } from '@/components/Paginator';
 import { Sidebar } from '@/server-components/Sidebar';
 import { Pagination } from '@/components/Pagination';
 
 async function getData() {
-  return getAllFilesMetadata<PostMetadata>('blog');
+  return getAllFilesMetadata<PostInfo>('blog');
 }
 
 export default async function Home() {

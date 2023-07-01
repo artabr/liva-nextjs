@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import { PostFileMetadata } from '@/models';
+import { PostFileInfo } from '@/models';
 import Link from 'next/link';
 import { formatPostDate } from '@/lib/utils';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 
 export type PillarPostProps = {
-  post: PostFileMetadata;
+  post: PostFileInfo;
 };
 
 export const PillarPost = ({ post }: PillarPostProps) => {
