@@ -1,1 +1,1 @@
-export * from './TagWidget';
+export { default as TagWidget } from './TagWidget';

@@ -1,1 +1,1 @@
-export * from './CategoryWidget';
+export { default as CategoryWidget } from './CategoryWidget';

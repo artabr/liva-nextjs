@@ -1,23 +1,21 @@
-import { data } from '@/server-components/Sidebar/mockData';
 import Link from 'next/link';
+import { getCategoryLinks } from '@/lib/fetch-utils/getCategoryLinks';
 
-export type CategoryWidgetProps = {
-  title?: string;
-};
+export default async function CategoryWidget() {
+  const categoryLinks = await getCategoryLinks();
 
-export const CategoryWidget = (props: CategoryWidgetProps) => {
   return (
     <div className="widget">
       <h4 className="widget-title">Category</h4>
-      {Object.entries(data.categories).length !== 0 && (
+      {categoryLinks.length !== 0 && (
         <ul className="list-unstyled">
-          {Object.entries(data.categories).map(([name, items]) => (
-            <li key={`category-${name}`}>
-              <Link href={`/categories/${name.toLowerCase()}/`}>{name}</Link>
+          {categoryLinks.map(({ title, url }) => (
+            <li key={title}>
+              <Link href={url}>{title}</Link>
             </li>
           ))}
         </ul>
       )}
     </div>
   );
-};
+}

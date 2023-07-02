@@ -9,7 +9,9 @@ export default async function Sidebar() {
     <div className="col-lg-4">
       <div className="widgets">
         <AboutWidget />
+        {/* @ts-expect-error Async Server Component */}
         <CategoryWidget />
+        {/* @ts-expect-error Async Server Component */}
         <TagWidget />
         {/* @ts-expect-error Async Server Component */}
         <SocialWidget />

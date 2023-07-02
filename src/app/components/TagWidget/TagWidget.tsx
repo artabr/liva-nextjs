@@ -1,20 +1,18 @@
 import Link from 'next/link';
-import { data } from '@/server-components/Sidebar/mockData';
+import { getTagLinks } from '@/lib/fetch-utils/getTagLinks';
 
-export type TagWidgetProps = {
-  title?: string;
-};
+export default async function TagWidget() {
+  const tagLinks = await getTagLinks();
 
-export const TagWidget = (props: TagWidgetProps) => {
   return (
     <div className="widget">
       <h4 className="widget-title">Tag</h4>
-      {Object.entries(data.tags).length !== 0 && (
+      {tagLinks.length !== 0 && (
         <ul className="list-inline">
-          {Object.entries(data.tags).map(([name, items]) => (
-            <li key={`tag-${name}`} className="list-inline-item">
-              <Link href={`/tags/${name.toLowerCase()}/`} className="d-block p-2 bg-primary text-white">
-                {name}
+          {tagLinks.map(({ title, url }) => (
+            <li key={title} className="list-inline-item">
+              <Link href={url} className="d-block p-2 bg-primary text-white">
+                {title}
               </Link>
             </li>
           ))}
@@ -22,4 +20,4 @@ export const TagWidget = (props: TagWidgetProps) => {
       )}
     </div>
   );
-};
+}
