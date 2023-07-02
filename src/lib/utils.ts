@@ -1,3 +1,5 @@
+import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+
 export function getSlugFromFilename(filename: string, contentPath: string, folder?: string) {
   const folderPath = folder ? `/${folder}` : '';
 
@@ -5,7 +7,7 @@ export function getSlugFromFilename(filename: string, contentPath: string, folde
 }
 
 export function getBlogLink(slug: string) {
-  return `/blog${slug}`;
+  return `/blog${ensureLeadingSlash(slug)}`;
 }
 
 export function formatPostDate(dateString?: string) {

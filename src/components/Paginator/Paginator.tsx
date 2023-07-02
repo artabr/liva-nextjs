@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { PostFileInfo } from '@/models';
 import Link from 'next/link';
-import { formatPostDate } from '@/lib/utils';
+import { formatPostDate, getBlogLink } from '@/lib/utils';
+import slugify from '@sindresorhus/slugify';
+import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 
 export type PaginatorProps = {
   pages: PostFileInfo[];
 };
-
-const ensureLeadingSlash = (path: string) => (path.startsWith('/') ? path : `/${path}`);
 
 export const Paginator = ({ pages }: PaginatorProps) => {
   return (
@@ -22,15 +22,11 @@ export const Paginator = ({ pages }: PaginatorProps) => {
             )}
             <div className="card-body px-0">
               {page.categories?.map((category) => (
-                <Link
-                  key={`category-${category}`}
-                  href={`/categories/${category.toLowerCase()}`}
-                  className="text-primary"
-                >
+                <Link key={category} href={getBlogLink(slugify(category))} className="text-primary">
                   {category}
                 </Link>
               ))}
-              <Link href={page.slug} className="h5 d-block my-3">
+              <Link href={getBlogLink(page.slug)} className="h5 d-block my-3">
                 {page.title}
               </Link>
               <div className="mb-3 post-meta">
@@ -39,7 +35,7 @@ export const Paginator = ({ pages }: PaginatorProps) => {
                 <span>{formatPostDate(page.date)}</span>
               </div>
               <p className="card-text">{page.title} - Summary</p>
-              <Link href={page.slug} className="btn btn-outline-primary">
+              <Link href={getBlogLink(page.slug)} className="btn btn-outline-primary">
                 read more
               </Link>
             </div>
