@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { PostFileInfo } from '@/models';
 import Link from 'next/link';
-import { formatPostDate, getBlogLink } from '@/lib/utils';
+import { formatPostDate, getBlogLink, getCategoryLink } from '@/lib/utils';
 import slugify from '@sindresorhus/slugify';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 
@@ -22,7 +22,7 @@ export const Paginator = ({ pages }: PaginatorProps) => {
             )}
             <div className="card-body px-0">
               {page.categories?.map((category) => (
-                <Link key={category} href={getBlogLink(slugify(category))} className="text-primary">
+                <Link key={category} href={getCategoryLink(slugify(category))} className="text-primary">
                   {category}
                 </Link>
               ))}

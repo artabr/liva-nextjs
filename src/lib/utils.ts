@@ -10,6 +10,14 @@ export function getBlogLink(slug: string) {
   return `/blog${ensureLeadingSlash(slug)}`;
 }
 
+export function getCategoryLink(slug: string) {
+  return `/blog/categories${ensureLeadingSlash(slug)}`;
+}
+
+export function getTagLink(slug: string) {
+  return `/blog/tags${ensureLeadingSlash(slug)}`;
+}
+
 export function formatPostDate(dateString?: string) {
   return dateString
     ? new Date(dateString).toLocaleDateString('en-US', {

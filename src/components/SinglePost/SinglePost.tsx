@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Post } from '@/models';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 import { MDXComponent } from '@/components/MDXComponent';
+import { getCategoryLink } from '@/lib/utils';
+import slugify from '@sindresorhus/slugify';
 
 export type SinglePostProps = Post;
 
@@ -15,11 +17,7 @@ export const SinglePost = (props: SinglePostProps) => {
         <div className="row">
           <div className="col-lg-8 mx-auto">
             {categories?.map((category) => (
-              <Link
-                key={`category-${category}`}
-                href={`/categories/${category.toLowerCase()}`}
-                className="text-primary"
-              >
+              <Link key={category} href={getCategoryLink(slugify(category))} className="text-primary">
                 {category}
               </Link>
             ))}
