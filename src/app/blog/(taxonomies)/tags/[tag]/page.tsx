@@ -3,11 +3,12 @@ import { Paginator } from '@/components/Paginator';
 import { PostInfo } from '@/models';
 import slugify from '@sindresorhus/slugify';
 import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
+import { POSTS_PER_PAGE } from '@/lib/constants';
 
 async function getData(tag: string) {
   const allPosts = await getAllFilesMetadata<PostInfo>('blog');
 
-  return allPosts.filter((post) => post.tags?.map((item) => slugify(item)).includes(tag));
+  return allPosts.filter((post) => post.tags?.map((item) => slugify(item)).includes(tag)).slice(0, POSTS_PER_PAGE);
 }
 
 export default async function Tags({ params }: { params: { tag: string } }) {

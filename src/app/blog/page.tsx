@@ -3,9 +3,13 @@ import { Paginator } from '@/components/Paginator';
 import { Sidebar } from '@/app/components/Sidebar';
 import { Pagination } from '@/components/Pagination';
 import { getAuthorInfo } from '@/lib/fetch-utils';
+import { PostInfo } from '@/models';
+import { POSTS_PER_PAGE } from '@/lib/constants';
 
 async function getData() {
-  return getAllFilesMetadata('blog');
+  const allPosts = await getAllFilesMetadata<PostInfo>('blog');
+
+  return allPosts.slice(0, POSTS_PER_PAGE);
 }
 
 export default async function Blog() {

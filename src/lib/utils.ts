@@ -1,4 +1,5 @@
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import { POSTS_PER_PAGE } from '@/lib/constants';
 
 export function getSlugFromFilename(filename: string, contentPath: string, folder?: string) {
   const folderPath = folder ? `/${folder}` : '';
@@ -16,6 +17,14 @@ export function getCategoryLink(slug: string) {
 
 export function getTagLink(slug: string) {
   return `/blog/tags${ensureLeadingSlash(slug)}`;
+}
+
+export function getPageLink(page: string) {
+  return `/pages${ensureLeadingSlash(page)}`;
+}
+
+export function getPageNumbers(itemsNumber: number) {
+  return [...Array(Math.ceil(itemsNumber / POSTS_PER_PAGE) - 1)].map((_, index) => (index + 2).toString());
 }
 
 export function formatPostDate(dateString?: string) {
