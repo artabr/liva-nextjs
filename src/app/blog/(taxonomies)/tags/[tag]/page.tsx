@@ -2,7 +2,7 @@ import { getAllFilesMetadata } from '@/lib/mdx';
 import { Paginator } from '@/components/Paginator';
 import { PostInfo } from '@/models';
 import slugify from '@sindresorhus/slugify';
-import { getBlogs } from '@/lib/fetch-utils/getBlogs';
+import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
 
 async function getData(tag: string) {
   const allPosts = await getAllFilesMetadata<PostInfo>('blog');
@@ -12,8 +12,9 @@ async function getData(tag: string) {
 
 export default async function Tags({ params }: { params: { tag: string } }) {
   const data = await getData(params.tag);
+  const { authorName } = await getAuthorInfo();
 
-  return <Paginator pages={data} />;
+  return <Paginator pages={data} authorName={authorName} />;
 }
 
 export async function generateStaticParams() {

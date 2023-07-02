@@ -6,6 +6,7 @@ import { Paginator } from '@/components/Paginator';
 import { Sidebar } from '@/server-components/Sidebar';
 import { Pagination } from '@/components/Pagination';
 import { getBlogLink } from '@/lib/utils';
+import { getAuthorInfo } from '@/lib/fetch-utils';
 
 async function getData() {
   return getAllFilesMetadata<PostInfo>('blog');
@@ -13,6 +14,7 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
+  const { authorName } = await getAuthorInfo();
 
   const recentPosts = data.filter((post) => post.type === 'featured').slice(0, 3);
   const pillarPost = data.find((post) => post.type === 'pillar');
@@ -21,14 +23,16 @@ export default async function Home() {
     <div>
       <section className="section-sm">
         <div className="container">
-          <div className="row justify-content-center">{pillarPost && <PillarPost post={pillarPost} />}</div>
+          <div className="row justify-content-center">
+            {pillarPost && <PillarPost post={pillarPost} authorName={authorName} />}
+          </div>
         </div>
       </section>
       <section>
         <div className="container">
           <div className="row">
             {recentPosts.map((post) => (
-              <RecentPost key={getBlogLink(post.slug)} post={post} />
+              <RecentPost key={getBlogLink(post.slug)} post={post} authorName={authorName} />
             ))}
           </div>
         </div>
@@ -38,7 +42,7 @@ export default async function Home() {
           <div className="row">
             <div className="col-lg-8 mb-5 mb-lg-0">
               <div className="row">
-                <Paginator pages={data} />
+                <Paginator pages={data} authorName={authorName} />
               </div>
             </div>
             {/* @ts-expect-error Async Server Component */}

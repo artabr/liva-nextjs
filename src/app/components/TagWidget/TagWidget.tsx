@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getTagLinks } from '@/lib/fetch-utils/getTagLinks';
+import { getTagLinks } from '@/lib/fetch-utils';
 
 export default async function TagWidget() {
   const tagLinks = await getTagLinks();

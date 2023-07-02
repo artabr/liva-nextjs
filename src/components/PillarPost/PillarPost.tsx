@@ -6,9 +6,10 @@ import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leadin
 
 export type PillarPostProps = {
   post: PostFileInfo;
+  authorName: string;
 };
 
-export const PillarPost = ({ post }: PillarPostProps) => {
+export const PillarPost = ({ post, authorName }: PillarPostProps) => {
   return (
     <div className="col-10">
       <article className="card featured-post">
@@ -23,11 +24,11 @@ export const PillarPost = ({ post }: PillarPostProps) => {
           <div className="col-md-6 offset-md-1">
             <div className="card-body">
               <div className="mb-3 post-meta">
-                <span>By Art</span>
+                <span>By {authorName}</span>
                 <span className="border-bottom border-primary px-2 mx-1" />
                 <span>{formatPostDate(post.date)}</span>
               </div>
-              <Link href={getBlogLink(getBlogLink(post.slug))} className="h1 fw-bold d-block text-dark mb-4 card-title">
+              <Link href={getBlogLink(post.slug)} className="h1 fw-bold d-block text-dark mb-4 card-title">
                 {post.title}
               </Link>
               <p className="card-text">{post.description}...</p>

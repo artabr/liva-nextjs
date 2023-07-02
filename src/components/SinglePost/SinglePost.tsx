@@ -6,10 +6,12 @@ import { MDXComponent } from '@/components/MDXComponent';
 import { getCategoryLink } from '@/lib/utils';
 import slugify from '@sindresorhus/slugify';
 
-export type SinglePostProps = Post;
+export type SinglePostProps = Post & {
+  authorName?: string;
+};
 
 export const SinglePost = (props: SinglePostProps) => {
-  const { categories, title, date, image, code } = props;
+  const { categories, title, date, image, code, authorName } = props;
 
   return (
     <section className="section-sm">
@@ -23,7 +25,7 @@ export const SinglePost = (props: SinglePostProps) => {
             ))}
             <h2>{title}</h2>
             <div className="mb-3 post-meta">
-              <span>By Author</span>
+              <span>By {authorName}</span>
               <span className="border-bottom border-primary px-2 mx-1" />
               <span>
                 {new Date(date ?? Date.now()).toLocaleDateString('en-US', {

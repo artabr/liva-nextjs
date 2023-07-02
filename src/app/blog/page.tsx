@@ -2,6 +2,7 @@ import { getAllFilesMetadata } from '@/lib/mdx';
 import { Paginator } from '@/components/Paginator';
 import { Sidebar } from '@/app/components/Sidebar';
 import { Pagination } from '@/components/Pagination';
+import { getAuthorInfo } from '@/lib/fetch-utils';
 
 async function getData() {
   return getAllFilesMetadata('blog');
@@ -9,6 +10,7 @@ async function getData() {
 
 export default async function Blog() {
   const data = await getData();
+  const { authorName } = await getAuthorInfo();
 
   return (
     <section className="section pb-0">
@@ -16,7 +18,7 @@ export default async function Blog() {
         <div className="row">
           <div className="col-lg-8 mb-5 mb-lg-0">
             <div className="row">
-              <Paginator pages={data} />
+              <Paginator pages={data} authorName={authorName} />
             </div>
           </div>
           {/* @ts-expect-error Async Server Component */}

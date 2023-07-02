@@ -1,6 +1,6 @@
 import { getFileBySlug } from '@/lib/mdx';
 import { SinglePost } from '@/components/SinglePost';
-import { getBlogs } from '@/lib/fetch-utils/getBlogs';
+import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
 import slugify from '@sindresorhus/slugify';
 
 async function getData(slug: string) {
@@ -9,8 +9,9 @@ async function getData(slug: string) {
 
 export default async function Blog({ params }: { params: { slug: string } }) {
   const data = await getData(params.slug);
+  const { authorName } = await getAuthorInfo();
 
-  return <SinglePost {...data} />;
+  return <SinglePost {...data} authorName={authorName} />;
 }
 
 export async function generateStaticParams() {

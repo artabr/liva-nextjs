@@ -1,1 +1,1 @@
-export * from './AboutWidget';
+export { default as AboutWidget } from './AboutWidget';

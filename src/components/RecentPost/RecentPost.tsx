@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 export type RecentPostProps = {
   post: PostFileInfo;
+  authorName: string;
 };
 
-export const RecentPost = ({ post }: RecentPostProps) => {
+export const RecentPost = ({ post, authorName }: RecentPostProps) => {
   return (
     <div className="col-lg-4 small-post-border">
       <article className="d-flex">
@@ -15,7 +16,7 @@ export const RecentPost = ({ post }: RecentPostProps) => {
         </div>
         <div className="flex-grow-1 ms-3">
           <div className="mb-3 post-meta">
-            <span>By Art</span>
+            <span>By {authorName}</span>
             <span className="border-bottom border-primary px-2 mx-1" />
             <span>{formatPostDate(post.date)}</span>
           </div>

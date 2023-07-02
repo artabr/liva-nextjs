@@ -31,6 +31,12 @@ export type IconLink = {
   icon: string;
 };
 
-export type SiteInfoData = {
+export type SiteInfo = {
   socialLinks: IconLink[];
+};
+
+export type AuthorInfo = FrontMatter & {
+  authorName: string;
+  summary: string;
+  image: string;
 };

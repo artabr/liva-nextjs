@@ -7,9 +7,10 @@ import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leadin
 
 export type PaginatorProps = {
   pages: PostFileInfo[];
+  authorName?: string;
 };
 
-export const Paginator = ({ pages }: PaginatorProps) => {
+export const Paginator = ({ pages, authorName }: PaginatorProps) => {
   return (
     <div className="row">
       {pages.map((page, index) => (
@@ -30,7 +31,7 @@ export const Paginator = ({ pages }: PaginatorProps) => {
                 {page.title}
               </Link>
               <div className="mb-3 post-meta">
-                <span>By Author</span>
+                <span>By {authorName}</span>
                 <span className="border-bottom border-primary px-2 mx-1" />
                 <span>{formatPostDate(page.date)}</span>
               </div>

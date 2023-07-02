@@ -16,6 +16,8 @@ items:
     url: "/about"
   - title: "Blog"
     url: "/blog"
+  - title: "Categories"
+    url: "/blog"
     submenu:
       - title: "Go Language"
         url: "/blog/categories/go-language"

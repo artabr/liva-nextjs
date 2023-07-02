@@ -1,12 +1,12 @@
-import { Post } from '@/models';
+import { AuthorInfo, FileContent, FileInfo, Post } from '@/models';
 import Image from 'next/image';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 import { MDXComponent } from '@/components/MDXComponent';
 
-export type SinglePostProps = Post;
+export type SinglePostProps = AuthorInfo & FileInfo & FileContent;
 
 export const AboutPage = (props: SinglePostProps) => {
-  const { title, image, code } = props;
+  const { title, image, code, authorName } = props;
 
   return (
     <section className="section-sm">
@@ -16,7 +16,7 @@ export const AboutPage = (props: SinglePostProps) => {
             {image && (
               <Image
                 src={ensureLeadingSlash(image)}
-                alt="Author"
+                alt={authorName}
                 width="335"
                 height="335"
                 className="img-fluid d-block mx-auto rounded-circle mb-4"
