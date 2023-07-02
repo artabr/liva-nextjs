@@ -1,42 +1,80 @@
 import Link from 'next/link';
+import { getPageLink, getPageNumbers } from '@/lib/utils';
+import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import cx from 'clsx';
 
 export type PaginationProps = {
-  title?: string;
+  itemsNumber: number;
+  parentPath?: string;
+  currentPage?: number;
 };
 
-export const Pagination = (props: PaginationProps) => {
+const getPaginationLink = (parentFolder: string, page: string | number) => {
+  const pageString = typeof page === 'number' ? page.toString() : page;
+
+  const parentPath = parentFolder === '' ? '/' : ensureLeadingSlash(parentFolder);
+
+  if (pageString === '1') return parentPath;
+
+  return `${parentPath}${getPageLink(pageString)}`;
+};
+
+export const Pagination = ({ itemsNumber, parentPath = '', currentPage = 1 }: PaginationProps) => {
+  const pages = getPageNumbers(itemsNumber);
+  const pagesNumber = pages.length;
+
   return (
     <ul className="pagination pagination-default">
-      <li className="page-item disabled">
-        <Link href="/" aria-disabled="true" aria-label="First" className="page-link" role="button" tabIndex={-1}>
-          <span aria-hidden="true">««</span>
-        </Link>
-      </li>
-      <li className="page-item disabled">
-        <Link href="/" aria-disabled="true" aria-label="Previous" className="page-link" role="button" tabIndex={-1}>
-          <span aria-hidden="true">«</span>
-        </Link>
-      </li>
-      <li className="page-item active">
-        <Link href="/" aria-current="page" aria-label="Page 1" className="page-link" role="button">
-          1
-        </Link>
-      </li>
-      <li className="page-item">
-        <Link href="/liva/examplesite/page/2/" aria-label="Page 2" className="page-link" role="button">
-          2
-        </Link>
-      </li>
-      <li className="page-item">
-        <Link href="/liva/examplesite/page/2/" aria-label="Next" className="page-link" role="button">
-          <span aria-hidden="true">»</span>
-        </Link>
-      </li>
-      <li className="page-item">
-        <Link href="/liva/examplesite/page/2/" aria-label="Last" className="page-link" role="button">
-          <span aria-hidden="true">»»</span>
-        </Link>
-      </li>
+      {currentPage !== 1 && (
+        <>
+          <li className="page-item">
+            <Link href={getPaginationLink(parentPath, 1)} aria-label="First" className="page-link" role="button">
+              <span aria-hidden="true">««</span>
+            </Link>
+          </li>
+          <li className="page-item">
+            <Link
+              href={getPaginationLink(parentPath, currentPage - 1)}
+              aria-label="Previous"
+              className="page-link"
+              role="button"
+            >
+              <span aria-hidden="true">«</span>
+            </Link>
+          </li>
+        </>
+      )}
+      {pages.map((page) => (
+        <li key={page} className={cx('page-item', { active: currentPage.toString() === page })}>
+          <Link href={getPaginationLink(parentPath, page)} aria-label={page} className="page-link" role="button">
+            {page}
+          </Link>
+        </li>
+      ))}
+      {currentPage < pagesNumber && (
+        <>
+          <li className="page-item">
+            <Link
+              href={getPaginationLink(parentPath, currentPage + 1)}
+              aria-label="Next"
+              className="page-link"
+              role="button"
+            >
+              <span aria-hidden="true">»</span>
+            </Link>
+          </li>
+          <li className="page-item">
+            <Link
+              href={getPaginationLink(parentPath, pagesNumber)}
+              aria-label="Last"
+              className="page-link"
+              role="button"
+            >
+              <span aria-hidden="true">»»</span>
+            </Link>
+          </li>
+        </>
+      )}
     </ul>
   );
 };

@@ -7,17 +7,16 @@ import { Sidebar } from '@/server-components/Sidebar';
 import { Pagination } from '@/components/Pagination';
 import { getBlogLink } from '@/lib/utils';
 import { getAuthorInfo } from '@/lib/fetch-utils';
-
-async function getData() {
-  return getAllFilesMetadata<PostInfo>('blog');
-}
+import { POSTS_PER_PAGE } from '@/lib/constants';
 
 export default async function Home() {
-  const data = await getData();
+  const allPosts = await getAllFilesMetadata<PostInfo>('blog');
+
+  const data = allPosts.slice(0, POSTS_PER_PAGE);
   const { authorName } = await getAuthorInfo();
 
-  const recentPosts = data.filter((post) => post.type === 'featured').slice(0, 3);
-  const pillarPost = data.find((post) => post.type === 'pillar');
+  const recentPosts = allPosts.filter((post) => post.type === 'featured').slice(0, 3);
+  const pillarPost = allPosts.find((post) => post.type === 'pillar');
 
   return (
     <div>
@@ -44,12 +43,12 @@ export default async function Home() {
               <div className="row">
                 <Paginator pages={data} authorName={authorName} />
               </div>
+              <div className="row">
+                <Pagination itemsNumber={allPosts.length} parentPath="blog" />
+              </div>
             </div>
             {/* @ts-expect-error Async Server Component */}
             <Sidebar />
-            <div className="col-12 mt-5">
-              <Pagination />
-            </div>
           </div>
         </div>
       </section>

@@ -4,18 +4,24 @@ import { PostInfo } from '@/models';
 import slugify from '@sindresorhus/slugify';
 import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
 import { POSTS_PER_PAGE } from '@/lib/constants';
-
-async function getData(tag: string) {
-  const allPosts = await getAllFilesMetadata<PostInfo>('blog');
-
-  return allPosts.filter((post) => post.tags?.map((item) => slugify(item)).includes(tag)).slice(0, POSTS_PER_PAGE);
-}
+import { Pagination } from '@/components/Pagination';
 
 export default async function Tags({ params }: { params: { tag: string } }) {
-  const data = await getData(params.tag);
+  const allPosts = await getAllFilesMetadata<PostInfo>('blog');
+  const allPostsByTag = allPosts.filter((post) => post.tags?.map((item) => slugify(item)).includes(params.tag));
+  const data = allPostsByTag.slice(0, POSTS_PER_PAGE);
   const { authorName } = await getAuthorInfo();
 
-  return <Paginator pages={data} authorName={authorName} />;
+  return (
+    <>
+      <div className="row">
+        <Paginator pages={data} authorName={authorName} />
+      </div>
+      <div className="row">
+        <Pagination itemsNumber={allPostsByTag.length} parentPath={`blog/tags/${params.tag}`} />
+      </div>
+    </>
+  );
 }
 
 export async function generateStaticParams() {

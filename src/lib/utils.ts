@@ -24,7 +24,7 @@ export function getPageLink(page: string) {
 }
 
 export function getPageNumbers(itemsNumber: number) {
-  return [...Array(Math.ceil(itemsNumber / POSTS_PER_PAGE) - 1)].map((_, index) => (index + 2).toString());
+  return [...Array(Math.ceil(itemsNumber / POSTS_PER_PAGE))].map((_, index) => (index + 1).toString());
 }
 
 export function formatPostDate(dateString?: string) {

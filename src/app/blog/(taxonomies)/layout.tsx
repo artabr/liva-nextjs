@@ -6,14 +6,9 @@ export default async function TaxonomiesLayout({ children }: { children: React.R
     <section className="section pb-0">
       <div className="container">
         <div className="row">
-          <div className="col-lg-8 mb-5 mb-lg-0">
-            <div className="row">{children}</div>
-          </div>
+          <div className="col-lg-8 mb-5 mb-lg-0">{children}</div>
           {/* @ts-expect-error Async Server Component */}
           <Sidebar />
-          <div className="col-12 mt-5">
-            <Pagination />
-          </div>
         </div>
       </div>
     </section>

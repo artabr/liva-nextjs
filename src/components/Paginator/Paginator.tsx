@@ -13,8 +13,8 @@ export type PaginatorProps = {
 export const Paginator = ({ pages, authorName }: PaginatorProps) => {
   return (
     <div className="row">
-      {pages.map((page, index) => (
-        <div key={`post-${index}`} className="col-md-6 mb-4">
+      {pages.map((page) => (
+        <div key={page.slug} className="col-md-6 mb-4">
           <article className="card">
             {page.image && (
               <div className="card-img-wrapper">
