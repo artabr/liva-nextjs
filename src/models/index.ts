@@ -8,7 +8,7 @@ export type PostInfo = FrontMatter & {
   date?: string;
   draft?: boolean;
   image?: string;
-  description?: string;
+  summary?: string;
   categories?: string[];
   tags?: string[];
 };

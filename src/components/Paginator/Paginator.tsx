@@ -35,7 +35,7 @@ export const Paginator = ({ pages, authorName }: PaginatorProps) => {
                 <span className="border-bottom border-primary px-2 mx-1" />
                 <span>{formatPostDate(page.date)}</span>
               </div>
-              <p className="card-text">{page.title} - Summary</p>
+              <p className="card-text">{page.summary}</p>
               <Link href={getBlogLink(page.slug)} className="btn btn-outline-primary">
                 read more
               </Link>

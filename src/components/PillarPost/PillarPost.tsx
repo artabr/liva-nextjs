@@ -31,7 +31,7 @@ export const PillarPost = ({ post, authorName }: PillarPostProps) => {
               <Link href={getBlogLink(post.slug)} className="h1 fw-bold d-block text-dark mb-4 card-title">
                 {post.title}
               </Link>
-              <p className="card-text">{post.description}...</p>
+              <p className="card-text">{post.summary}...</p>
             </div>
           </div>
         </div>
