@@ -42,7 +42,10 @@ export const Footer = (props: PropsWithChildren<FooterProps>) => {
               </ul>
             </div>
           ))}
-          <div className="col-12 border-top py-4 text-center">{props.copyright}</div>
+          <div
+            className="col-12 border-top py-4 text-center"
+            dangerouslySetInnerHTML={{ __html: props.copyright ?? '' }}
+          />
         </div>
       </div>
     </footer>

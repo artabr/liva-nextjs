@@ -1,4 +1,3 @@
-import { RecentPost } from '@/components/RecentPost';
 import { getAllFilesMetadata } from '@/lib/mdx';
 import { PillarPost } from '@/components/PillarPost';
 import { PostInfo } from '@/models';
@@ -8,6 +7,7 @@ import { Pagination } from '@/components/Pagination';
 import { getBlogLink } from '@/lib/utils';
 import { getAuthorInfo } from '@/lib/fetch-utils';
 import { POSTS_PER_PAGE } from '@/lib/constants';
+import { FeaturedPost } from '@/components/FeaturedPost';
 
 export default async function Home() {
   const allPosts = await getAllFilesMetadata<PostInfo>('blog');
@@ -31,7 +31,7 @@ export default async function Home() {
         <div className="container">
           <div className="row">
             {recentPosts.map((post) => (
-              <RecentPost key={getBlogLink(post.slug)} post={post} authorName={authorName} />
+              <FeaturedPost key={getBlogLink(post.slug)} post={post} authorName={authorName} />
             ))}
           </div>
         </div>

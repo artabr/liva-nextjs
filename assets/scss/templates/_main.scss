@@ -53,12 +53,13 @@
 
 /* recent post */
 .recent-post-thumb {
+  position: relative;
   height: 100px;
   width: 100px;
-  border-radius: 50%;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+  img {
+    border-radius: 50%;
+  }
 }
 
 .small-post-border {

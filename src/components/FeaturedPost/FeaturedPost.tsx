@@ -1,18 +1,30 @@
 import { PostFileInfo } from '@/models';
 import { formatPostDate, getBlogLink } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
-export type RecentPostProps = {
+export type FeaturedPostProps = {
   post: PostFileInfo;
   authorName: string;
 };
 
-export const RecentPost = ({ post, authorName }: RecentPostProps) => {
+export const FeaturedPost = ({ post, authorName }: FeaturedPostProps) => {
   return (
     <div className="col-lg-4 small-post-border">
       <article className="d-flex">
         <div className="flex-shrink-0">
-          {post.image && <div className="recent-post-thumb me-3" style={{ backgroundImage: `url(${post.image});` }} />}
+          {post.image && (
+            <div className="recent-post-thumb me-3">
+              <Image
+                alt={post.title ?? ''}
+                src={post.image}
+                fill
+                style={{
+                  objectFit: 'cover'
+                }}
+              />
+            </div>
+          )}
         </div>
         <div className="flex-grow-1 ms-3">
           <div className="mb-3 post-meta">
