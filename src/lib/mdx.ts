@@ -6,7 +6,7 @@ import { bundleMDX } from 'mdx-bundler';
 import remarkGfm from 'remark-gfm';
 import remarkFootnotes from 'remark-footnotes';
 import remarkMath from 'remark-math';
-import remarkEmbedder from '@remark-embedder/core';
+import remarkEmbedder, { TransformerInfo } from '@remark-embedder/core';
 import oembedTransformer from '@remark-embedder/transformer-oembed';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -47,6 +47,14 @@ export async function getAllFilesMetadata<T extends FrontMatter>(folder: string)
   });
 }
 
+function handleEmbedderHTML(html: string, info: TransformerInfo) {
+  const { url } = info;
+
+  if (url.includes('youtube.com')) return `<div class="embed-youtube">${html}</div>`;
+
+  return html;
+}
+
 export async function getFileBySlug<T extends FrontMatter>(
   type: string,
   slug = 'index'
@@ -71,7 +79,7 @@ export async function getFileBySlug<T extends FrontMatter>(
         remarkGfm,
         [remarkFootnotes, { inlineNotes: true }],
         remarkMath,
-        [remarkEmbedder, { transformers: [oembedTransformer] }]
+        [remarkEmbedder, { transformers: [oembedTransformer], handleHTML: handleEmbedderHTML }]
       ];
       // eslint-disable-next-line no-param-reassign
       options.rehypePlugins = [

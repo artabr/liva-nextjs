@@ -18,7 +18,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'prettier'
   ],
-  plugins: ['react', 'prettier', 'deprecated-classnames'],
+  plugins: ['react', 'prettier'],
   settings: {
     react: {
       version: 'detect'
