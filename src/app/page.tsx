@@ -1,13 +1,19 @@
-import { getAllFilesMetadata } from '@/lib/mdx';
-import { PillarPost } from '@/components/PillarPost';
 import { PostInfo } from '@/models';
-import { Paginator } from '@/components/Paginator';
-import { Sidebar } from '@/server-components/Sidebar';
-import { Pagination } from '@/components/Pagination';
-import { getBlogLink } from '@/lib/utils';
-import { getAuthorInfo } from '@/lib/fetch-utils';
+
 import { POSTS_PER_PAGE } from '@/lib/constants';
+
+import { getAuthorInfo } from '@/lib/fetch-utils';
+
+import { getAllFilesMetadata } from '@/lib/mdx';
+
+import { getBlogLink } from '@/lib/utils';
+
 import { FeaturedPost } from '@/components/FeaturedPost';
+import { Pagination } from '@/components/Pagination';
+import { Paginator } from '@/components/Paginator';
+import { PillarPost } from '@/components/PillarPost';
+
+import { Sidebar } from '@/server-components/Sidebar';
 
 export default async function Home() {
   const allPosts = await getAllFilesMetadata<PostInfo>('blog');

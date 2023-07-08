@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { getCategoryLinks } from '@/lib/fetch-utils';
 
 export default async function CategoryWidget() {

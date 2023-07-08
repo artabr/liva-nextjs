@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import { getPageLink, getPageNumbers } from '@/lib/utils';
-import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 import cx from 'clsx';
+import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import Link from 'next/link';
+
+import { getPageLink, getPageNumbers } from '@/lib/utils';
 
 export type PaginationProps = {
   itemsNumber: number;

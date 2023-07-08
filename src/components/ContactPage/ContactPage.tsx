@@ -1,5 +1,6 @@
-import { ContactForm } from '@/components/ContactForm';
 import { TfiEmail, TfiLocationPin, TfiMobile } from 'react-icons/tfi';
+
+import { ContactForm } from '@/components/ContactForm';
 
 export type GetInTouchProps = {
   title: string;

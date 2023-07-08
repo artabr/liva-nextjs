@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import { getSocialLinks } from '@/lib/fetch-utils';
+
 import { Icon } from '@/components/Icon';
 
 export default async function SocialWidget() {

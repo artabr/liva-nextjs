@@ -1,7 +1,9 @@
-import { getAllFilesMetadata } from '@/lib/mdx';
-import { PostInfo } from '@/models';
-import { getTagLink } from '@/lib/utils';
 import slugify from '@sindresorhus/slugify';
+
+import { PostInfo } from '@/models';
+
+import { getAllFilesMetadata } from '@/lib/mdx';
+import { getTagLink } from '@/lib/utils';
 
 export const getTagLinks = async () => {
   const postsMetadata = await getAllFilesMetadata<PostInfo>('blog');

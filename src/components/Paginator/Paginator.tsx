@@ -1,9 +1,12 @@
-import Image from 'next/image';
-import { PostFileInfo } from '@/models';
-import Link from 'next/link';
-import { formatPostDate, getBlogLink, getCategoryLink } from '@/lib/utils';
 import slugify from '@sindresorhus/slugify';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import Image from 'next/image';
+
+import Link from 'next/link';
+
+import { PostFileInfo } from '@/models';
+
+import { formatPostDate, getBlogLink, getCategoryLink } from '@/lib/utils';
 
 export type PaginatorProps = {
   pages: PostFileInfo[];

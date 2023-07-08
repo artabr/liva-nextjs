@@ -1,4 +1,5 @@
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+
 import { POSTS_PER_PAGE } from '@/lib/constants';
 
 export function getSlugFromFilename(filename: string, contentPath: string, folder?: string) {

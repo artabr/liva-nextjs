@@ -1,6 +1,8 @@
-import { AuthorInfo, FileContent, FileInfo, Post } from '@/models';
-import Image from 'next/image';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import Image from 'next/image';
+
+import { AuthorInfo, FileContent, FileInfo, Post } from '@/models';
+
 import { MDXComponent } from '@/components/MDXComponent';
 
 export type SinglePostProps = AuthorInfo & FileInfo & FileContent;

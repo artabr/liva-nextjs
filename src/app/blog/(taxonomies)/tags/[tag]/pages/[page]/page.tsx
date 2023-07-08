@@ -1,11 +1,15 @@
-import { getAllFilesMetadata } from '@/lib/mdx';
-import { Paginator } from '@/components/Paginator';
-import { PostInfo } from '@/models';
-import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
-import { POSTS_PER_PAGE } from '@/lib/constants';
-import { getPageNumbers } from '@/lib/utils';
 import slugify from '@sindresorhus/slugify';
+
+import { PostInfo } from '@/models';
+
+import { POSTS_PER_PAGE } from '@/lib/constants';
+
+import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
+import { getAllFilesMetadata } from '@/lib/mdx';
+import { getPageNumbers } from '@/lib/utils';
+
 import { Pagination } from '@/components/Pagination';
+import { Paginator } from '@/components/Paginator';
 
 export default async function Pages({ params }: { params: { tag: string; page: string } }) {
   const allPosts = await getAllFilesMetadata<PostInfo>('blog');

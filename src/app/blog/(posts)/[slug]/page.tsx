@@ -1,7 +1,9 @@
-import { getFileBySlug } from '@/lib/mdx';
-import { SinglePost } from '@/components/SinglePost';
-import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
 import slugify from '@sindresorhus/slugify';
+
+import { getAuthorInfo, getBlogs } from '@/lib/fetch-utils';
+import { getFileBySlug } from '@/lib/mdx';
+
+import { SinglePost } from '@/components/SinglePost';
 
 async function getData(slug: string) {
   return getFileBySlug('blog', slug);

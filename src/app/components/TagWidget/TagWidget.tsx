@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { getTagLinks } from '@/lib/fetch-utils';
 
 export default async function TagWidget() {

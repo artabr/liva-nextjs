@@ -1,4 +1,5 @@
 import { TfiDribbble, TfiGithub, TfiLinkedin, TfiStackOverflow, TfiTwitter } from 'react-icons/tfi';
+
 import { TfiIcons } from '@/components/Icon/Icon.types';
 
 export type IconProps = {

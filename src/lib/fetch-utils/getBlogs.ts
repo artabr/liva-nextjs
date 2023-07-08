@@ -1,5 +1,6 @@
-import { getAllFilesMetadata } from '@/lib/mdx';
 import { PostInfo } from '@/models';
+
+import { getAllFilesMetadata } from '@/lib/mdx';
 
 export const getBlogs = async () => {
   const postsMetadata = await getAllFilesMetadata<PostInfo>('blog');

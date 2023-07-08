@@ -1,5 +1,6 @@
-import { getFileMetadata } from '@/lib/mdx';
 import { SiteInfo } from '@/models';
+
+import { getFileMetadata } from '@/lib/mdx';
 
 export const getSocialLinks = async () => {
   const siteInfo = await getFileMetadata<SiteInfo>('_metadata', 'site-info');

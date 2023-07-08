@@ -1,17 +1,19 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+
+import remarkEmbedder, { TransformerInfo } from '@remark-embedder/core';
+import oembedTransformer from '@remark-embedder/transformer-oembed';
 import { glob } from 'glob';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
-import remarkGfm from 'remark-gfm';
-import remarkFootnotes from 'remark-footnotes';
-import remarkMath from 'remark-math';
-import remarkEmbedder, { TransformerInfo } from '@remark-embedder/core';
-import oembedTransformer from '@remark-embedder/transformer-oembed';
-import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrismPlus from 'rehype-prism-plus';
+import rehypeSlug from 'rehype-slug';
+import remarkFootnotes from 'remark-footnotes';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+
 import { FileContent, FileInfo, FrontMatter } from '@/models';
 
 import { CONTENT_PATH } from '@/lib/constants';

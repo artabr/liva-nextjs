@@ -1,4 +1,5 @@
 import { Sidebar } from '@/app/components/Sidebar';
+
 import { Pagination } from '@/components/Pagination';
 
 export default async function TaxonomiesLayout({ children }: { children: React.ReactNode }) {

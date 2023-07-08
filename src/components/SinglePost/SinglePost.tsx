@@ -1,10 +1,13 @@
+import slugify from '@sindresorhus/slugify';
+import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { Post } from '@/models';
-import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
-import { MDXComponent } from '@/components/MDXComponent';
+
 import { getCategoryLink } from '@/lib/utils';
-import slugify from '@sindresorhus/slugify';
+
+import { MDXComponent } from '@/components/MDXComponent';
 
 export type SinglePostProps = Post & {
   authorName?: string;

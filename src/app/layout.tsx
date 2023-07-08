@@ -1,11 +1,14 @@
 import './globals.scss';
 import { Inter } from 'next/font/google';
-import { Navigation, NavigationItem } from '@/components/Header';
-import { Newsletter } from '@/components/Newsletter/Newsletter';
-import { Footer, FooterProps } from '@/components/Footer';
-import { getFileBySlug, getFileMetadata } from '@/lib/mdx';
-import { MDXComponent } from '@/components/MDXComponent';
+
 import { getSiteInfo } from '@/lib/fetch-utils';
+
+import { getFileBySlug, getFileMetadata } from '@/lib/mdx';
+
+import { Footer, FooterProps } from '@/components/Footer';
+import { Navigation, NavigationItem } from '@/components/Header';
+import { MDXComponent } from '@/components/MDXComponent';
+import { Newsletter } from '@/components/Newsletter/Newsletter';
 
 const inter = Inter({ subsets: ['latin'] });
 

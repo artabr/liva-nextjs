@@ -1,7 +1,9 @@
-import { PostFileInfo } from '@/models';
-import { formatPostDate, getBlogLink } from '@/lib/utils';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import { PostFileInfo } from '@/models';
+
+import { formatPostDate, getBlogLink } from '@/lib/utils';
 
 export type FeaturedPostProps = {
   post: PostFileInfo;

@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { getAuthorInfo } from '@/lib/fetch-utils';
 import { ensureLeadingSlash } from 'next/dist/shared/lib/page-path/ensure-leading-slash';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { getAuthorInfo } from '@/lib/fetch-utils';
 
 export default async function AboutWidget() {
   const authorInfo = await getAuthorInfo();

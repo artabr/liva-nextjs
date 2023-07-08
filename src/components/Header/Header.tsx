@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { TfiClose, TfiMenu, TfiSearch } from 'react-icons/tfi';
-import Image from 'next/image';
+
+import { IconLink } from '@/models';
+
 import { DropdownMenu } from '@/components/DropdownMenu';
 import { Icon } from '@/components/Icon';
-import { IconLink } from '@/models';
 
 export type NavigationItem = {
   title: string;

@@ -1,5 +1,5 @@
-import { AdvertisementWidget } from '@/server-components/AdvertisementWidget';
 import { AboutWidget } from '@/server-components/AboutWidget';
+import { AdvertisementWidget } from '@/server-components/AdvertisementWidget';
 import { CategoryWidget } from '@/server-components/CategoryWidget';
 import { SocialWidget } from '@/server-components/SocialWidget';
 import { TagWidget } from '@/server-components/TagWidget';
