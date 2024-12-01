@@ -10,7 +10,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
-import remarkFootnotes from 'remark-footnotes';
+import remarkFootnotes from 'remark-gfm';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
