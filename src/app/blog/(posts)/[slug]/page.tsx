@@ -6,20 +6,20 @@ import { getFileBySlug } from '@/lib/mdx';
 import { SinglePost } from '@/components/SinglePost';
 
 async function getData(slug: string) {
-  return getFileBySlug('blog', slug);
+	return getFileBySlug('blog', slug);
 }
 
 export default async function Blog({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug);
-  const { authorName } = await getAuthorInfo();
+	const data = await getData(params.slug);
+	const { authorName } = await getAuthorInfo();
 
-  return <SinglePost {...data} authorName={authorName} />;
+	return <SinglePost {...data} authorName={authorName} />;
 }
 
 export async function generateStaticParams() {
-  const blogs = await getBlogs();
+	const blogs = await getBlogs();
 
-  return blogs.posts.map((post) => ({
-    slug: slugify(post.slug ?? '')
-  }));
+	return blogs.posts.map((post) => ({
+		slug: slugify(post.slug ?? ''),
+	}));
 }
