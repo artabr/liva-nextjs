@@ -6,14 +6,14 @@ import { getAllFilesMetadata } from '@/lib/mdx';
 import { getCategoryLink } from '@/lib/utils';
 
 export const getCategoryLinks = async () => {
-	const postsMetadata = await getAllFilesMetadata<PostInfo>('blog');
+  const postsMetadata = await getAllFilesMetadata<PostInfo>('blog');
 
-	const siteCategories = [
-		...new Set(postsMetadata.flatMap((post) => post.categories)),
-	];
+  const siteCategories = [
+    ...new Set(postsMetadata.flatMap((post) => post.categories)),
+  ];
 
-	return siteCategories.map((category) => ({
-		title: category,
-		url: getCategoryLink(slugify(category ?? '')),
-	}));
+  return siteCategories.map((category) => ({
+    title: category,
+    url: getCategoryLink(slugify(category ?? '')),
+  }));
 };

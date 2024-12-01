@@ -3,7 +3,7 @@ import type { AuthorInfo } from '@/models';
 import { getFileMetadata } from '@/lib/mdx';
 
 export const getAuthorInfo = async () => {
-	const authorInfo = await getFileMetadata<AuthorInfo>('about');
+  const authorInfo = await getFileMetadata<AuthorInfo>('about');
 
-	return authorInfo;
+  return authorInfo;
 };
