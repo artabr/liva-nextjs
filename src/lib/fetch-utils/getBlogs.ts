@@ -7,8 +7,11 @@ export const getBlogs = async () => {
 
   const siteCategories = [
     ...new Set(postsMetadata.flatMap((post) => post.categories)),
-  ];
-  const siteTags = [...new Set(postsMetadata.flatMap((post) => post.tags))];
+  ].filter(Boolean);
+
+  const siteTags = [
+    ...new Set(postsMetadata.flatMap((post) => post.tags)),
+  ].filter(Boolean);
 
   return {
     posts: postsMetadata,

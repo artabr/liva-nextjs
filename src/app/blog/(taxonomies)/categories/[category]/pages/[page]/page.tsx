@@ -44,9 +44,15 @@ export default async function Pages({
 export async function generateStaticParams() {
   const blogs = await getBlogs();
 
-  return getPageNumbers(blogs.posts.length)
-    .slice(1)
-    .map((page) => ({
+  return blogs.categories.flatMap((category) => {
+    const postsByCategory = blogs.posts.filter((post) =>
+      post.categories?.includes(category),
+    );
+    const pageNumbers = getPageNumbers(postsByCategory.length);
+
+    return pageNumbers.slice(1).map((page) => ({
+      category,
       page,
     }));
+  });
 }

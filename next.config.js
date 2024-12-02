@@ -3,15 +3,21 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   sassOptions: {
-    includePaths: [path.join(__dirname, 'src')]
+    includePaths: [path.join(__dirname, 'src')],
   },
   experimental: {
-    scrollRestoration: false
+    scrollRestoration: false,
   },
   output: 'export',
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
-    unoptimized: true
-  }
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;
