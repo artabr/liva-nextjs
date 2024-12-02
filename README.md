@@ -1,6 +1,6 @@
 <h1 align=center>Liva for Next.js</h1>
 
-<h2 align="center">Next.js 13, React 18, TypeScript 5, Bootstrap 5, MDX blog template</h2>
+<h2 align="center">Next.js 14, React 18, TypeScript 5, Biome, Bootstrap 5, MDX blog template</h2>
 
 <hr />
 
@@ -10,7 +10,7 @@
 </h2>
 
 <p align=center>
-  <img src="https://img.shields.io/static/v1?label=Next.js&message=13.4.5&color=0070f3&logo=next.js" alt="Next.js 13.4.5" />
+  <img src="https://img.shields.io/static/v1?label=Next.js&message=14.2.18&color=0070f3&logo=next.js" alt="Next.js 14.2.18" />
 
   <img src="https://img.shields.io/static/v1?label=React&message=18.2.0&color=148eca&logo=react" alt="React 18.2.0" />
 
@@ -33,14 +33,11 @@ It is a simple yet powerful template that is easy to use and customize.
 
 
 ## 🔑Key Features
-- [x] 📄 7+ Pre-Designed Pages
+- [x] 📄 6+ Pre-Designed Pages
 - [x] 🅱️ Bootstrap Based
 - [x] ✉️ Contact form support
 - [x] 🚀 Google Page Speed optimized
-- [ ] 📊 Google Analytics support
-- [ ] 🔄 GDPR consent enabled
-- [ ] 🌐 Open Graph meta tag
-- [ ] 🐦 Twitter Card meta tag
+- [x] 👮‍♂️ Biome for formatting and linting
 
 ## 📄6+ Pre-Designed Pages
 
@@ -51,6 +48,18 @@ It is a simple yet powerful template that is easy to use and customize.
 - [x] 📄 Categories Single Page
 - [x] 📞 Contact Page
 
+
+## Removal of Eslint and Prettier
+
+This project uses [Biome](https://biomejs.dev) for formatting and linting.
+
+I found out that Biome gives the same functionality as Eslint and Prettier but in a more modern and efficient way.
+
+It's faster and easier to use - you don't need to configure anything, just run `npx @biomejs/biome init` and you're good to go.
+
+Eslint and Prettier with their configuration files and plugins on this project provided the same functionality as Biome does out of the box.
+
+I completely removed Eslint and Prettier from the project and plan to use Biome in the future for all my projects.
 
 
 ## 🔧Local development
